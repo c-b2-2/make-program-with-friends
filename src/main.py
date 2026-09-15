@@ -7,3 +7,5 @@ def multiply_function(*args):
         result *= args
 
     return result
+def add(a: int, b: int) -> int:
+    return a + b
