@@ -1,6 +1,6 @@
 # 최종 마무리 실행표
 
-이 문서는 이미 작성된 산출물을 다시 만드는 목록이 아닙니다. 정리 Issue [#30](https://github.com/c-b2-2/make-program-with-friends/issues/30)과 Draft PR [#31](https://github.com/c-b2-2/make-program-with-friends/pull/31)은 공개됐습니다. 아래에는 에이전트가 대신할 수 없는 **실제 계정의 review·merge와 Git 명령 실습**만 남겼습니다. 완료 전에는 `완료`나 실제 commit hash를 미리 쓰지 않습니다.
+이 문서는 이미 작성된 산출물을 다시 만드는 목록이 아닙니다. 정리 Issue [#30](https://github.com/c-b2-2/make-program-with-friends/issues/30)과 Draft PR [#31](https://github.com/c-b2-2/make-program-with-friends/pull/31)은 공개됐습니다. 아래에는 **실제 계정의 review·본문 수정·merge, Git 명령 실습과 마지막 상태 갱신**만 남겼습니다. 완료 전에는 `완료`나 실제 commit hash를 미리 쓰지 않습니다.
 
 ## 1. 열린 PR 네 건을 짧게 마무리
 
@@ -93,7 +93,7 @@ git push origin feature/cerhovah-mission-completion
 
 ## 6. 최종 확인
 
-- [ ] #11, #19, #28, #29가 병합되고 정리 PR이 #26도 함께 닫음
+- [ ] #11, #19, #28, #29가 병합되고 정리 PR #31이 #30과 #26을 함께 닫음
 - [ ] 다섯 명 모두 병합 PR 2개 이상, 타인 실질 리뷰 2개 이상, 자기 PR 피드백 반영 1회 이상
 - [ ] 과거 PR 보완은 실제 작성자/리뷰어 계정에서 사실대로 남음
 - [ ] 의도적 충돌 2회의 실제 commit·marker·결과가 기록됨
