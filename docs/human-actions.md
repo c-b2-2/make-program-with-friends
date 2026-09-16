@@ -1,6 +1,6 @@
 # 최종 마무리 실행표
 
-이 문서는 이미 작성된 산출물을 다시 만드는 목록이 아닙니다. 에이전트가 대신할 수 없는 **실제 계정의 review·reply·merge와 Git 명령 실습**만 남겼습니다. 완료 전에는 `완료`나 실제 commit hash를 미리 쓰지 않습니다.
+이 문서는 이미 작성된 산출물을 다시 만드는 목록이 아닙니다. 정리 Issue [#30](https://github.com/c-b2-2/make-program-with-friends/issues/30)과 Draft PR [#31](https://github.com/c-b2-2/make-program-with-friends/pull/31)은 공개됐습니다. 아래에는 에이전트가 대신할 수 없는 **실제 계정의 review·merge와 Git 명령 실습**만 남겼습니다. 완료 전에는 `완료`나 실제 commit hash를 미리 쓰지 않습니다.
 
 ## 1. 열린 PR 네 건을 짧게 마무리
 
@@ -68,7 +68,7 @@ git push origin feature/cerhovah-mission-completion
 새 기능이나 새 PR은 필요 없습니다. 다음은 엄격한 “모든 PR에 작성자–리뷰어 상호작용” 판정을 위한 짧은 사실 확인입니다.
 
 - 최건영: #4의 이준혁 리뷰에 사실 확인 답글을 남기고, #18 본문의 `ValueError` 설명을 최종 코드의 `ZeroDivisionError`로 정정합니다.
-- 이준혁: #6의 새 구체적 리뷰와 #24의 보강 리뷰에 답합니다. #21 본문에서 실제로 추가되지 않은 `conflict-resolution.md` 주장을 삭제합니다. 이 세 Cerhovah 계정 작업은 정리 PR 공개와 함께 에이전트가 처리할 수 있습니다.
+- 이준혁: **공개 보완 완료.** #21 본문을 실제 diff에 맞게 정정하고 리뷰 답글을 남겼으며, #6에는 현재 `main`의 양수·음수 뺄셈 재검증, #24에는 정리 PR #31의 stash 문서 보완을 각각 사후 댓글로 남겼습니다. 이후 리뷰어가 새 질문을 남길 때만 추가 답변합니다.
 - 김강현: #7의 빈 How를 실제 확인 내용으로 채우면서, 초기 #2와 실제 구현 #7·#13의 관계도 한 문장으로 연결합니다. 이 본문 수정이 기존 리뷰 반영 증빙이므로 별도 답글은 선택입니다.
 - 김보민: #6에 음수 입력 등 구체적 검증 코멘트를 남기고, #22 How를 실제 Markdown/diff 확인으로 고칩니다. 본문 수정이 기존 리뷰 반영이므로 별도 답글은 선택입니다.
 - 임효정: #24에 `stash pop`의 충돌 가능성 또는 `stash apply` 대안을 파일 내용과 연결해 한 문장 보강합니다.
@@ -77,7 +77,7 @@ git push origin feature/cerhovah-mission-completion
 
 ## 4. 정리 PR에서 #26 revert까지 완료
 
-새 PR을 하나 더 만들지 않습니다. 정리 PR 본문에 `Closes #30`과 `Closes #26`을 함께 넣고 다음 순서로 진행합니다.
+새 PR을 하나 더 만들지 않습니다. Draft PR [#31](https://github.com/c-b2-2/make-program-with-friends/pull/31)에 `Closes #30`과 `Closes #26`이 함께 들어갔습니다. 다음 순서로 진행합니다.
 
 1. 김강현이 정리 브랜치에 안전한 임시 문서 commit을 만들고 원격에 push합니다.
 2. 같은 branch에서 `git revert <방금 push한 hash>`를 실행해 원상 복구 commit을 push합니다.

@@ -12,13 +12,13 @@
 
 | 팀원 | 직접 만든 Issue | 작성 PR과 연결 Issue |
 | --- | --- | --- |
-| 이준혁 (`Cerhovah`) | [#1](https://github.com/c-b2-2/make-program-with-friends/issues/1) 닫힘, [#14](https://github.com/c-b2-2/make-program-with-friends/issues/14) 열림, [#15](https://github.com/c-b2-2/make-program-with-friends/issues/15) 닫힘, [#23](https://github.com/c-b2-2/make-program-with-friends/issues/23) 닫힘, [#30](https://github.com/c-b2-2/make-program-with-friends/issues/30) 열림 | [#6](https://github.com/c-b2-2/make-program-with-friends/pull/6) 병합→#1, [#21](https://github.com/c-b2-2/make-program-with-friends/pull/21) 병합→#15, [#24](https://github.com/c-b2-2/make-program-with-friends/pull/24) 병합→#23, 정리 PR 예정→#30·#26 |
+| 이준혁 (`Cerhovah`) | [#1](https://github.com/c-b2-2/make-program-with-friends/issues/1) 닫힘, [#14](https://github.com/c-b2-2/make-program-with-friends/issues/14) 열림, [#15](https://github.com/c-b2-2/make-program-with-friends/issues/15) 닫힘, [#23](https://github.com/c-b2-2/make-program-with-friends/issues/23) 닫힘, [#30](https://github.com/c-b2-2/make-program-with-friends/issues/30) 열림 | [#6](https://github.com/c-b2-2/make-program-with-friends/pull/6) 병합→#1, [#21](https://github.com/c-b2-2/make-program-with-friends/pull/21) 병합→#15, [#24](https://github.com/c-b2-2/make-program-with-friends/pull/24) 병합→#23, [#31](https://github.com/c-b2-2/make-program-with-friends/pull/31) Draft→#30·#26 |
 | 김강현 (`kanghyki`) | [#2](https://github.com/c-b2-2/make-program-with-friends/issues/2) 닫힘, [#5](https://github.com/c-b2-2/make-program-with-friends/issues/5) 닫힘, [#12](https://github.com/c-b2-2/make-program-with-friends/issues/12) 닫힘, [#25](https://github.com/c-b2-2/make-program-with-friends/issues/25) 열림, [#26](https://github.com/c-b2-2/make-program-with-friends/issues/26) 열림, [#27](https://github.com/c-b2-2/make-program-with-friends/issues/27) 열림 | [#7](https://github.com/c-b2-2/make-program-with-friends/pull/7) 병합→#5, [#13](https://github.com/c-b2-2/make-program-with-friends/pull/13) 병합→#12 |
 | 최건영 (`00skgun`) | [#3](https://github.com/c-b2-2/make-program-with-friends/issues/3) 닫힘, [#8](https://github.com/c-b2-2/make-program-with-friends/issues/8) 닫힘, [#16](https://github.com/c-b2-2/make-program-with-friends/issues/16) 닫힘 | [#4](https://github.com/c-b2-2/make-program-with-friends/pull/4) 병합→#3, [#10](https://github.com/c-b2-2/make-program-with-friends/pull/10) 병합→#8, [#18](https://github.com/c-b2-2/make-program-with-friends/pull/18) 병합→#16 |
 | 김보민 (`nengrafi`) | [#9](https://github.com/c-b2-2/make-program-with-friends/issues/9) 열림, [#20](https://github.com/c-b2-2/make-program-with-friends/issues/20) 닫힘 | [#11](https://github.com/c-b2-2/make-program-with-friends/pull/11) 열림→#9, [#22](https://github.com/c-b2-2/make-program-with-friends/pull/22) 병합→#20, [#28](https://github.com/c-b2-2/make-program-with-friends/pull/28) 열림→#27 |
 | 임효정 (`gittul-123`) | [#17](https://github.com/c-b2-2/make-program-with-friends/issues/17) 열림 | [#19](https://github.com/c-b2-2/make-program-with-friends/pull/19) 열림→#17, [#29](https://github.com/c-b2-2/make-program-with-friends/pull/29) 열림→#25 |
 
-PR 연결이 확인되지 않은 Issue는 #2, #14, #26입니다. #2는 초기 덧셈 Issue로 `completed` 종료됐고 실제 덧셈 구현은 #7·#13에서 추적됐지만 #2와 자동 연결되지는 않았습니다. #14의 대화형 계산기 통합은 선택한 결과물 A의 최소 기준보다 큰 별도 enhancement라서 이번 제출 필수 작업에서 제외합니다. #26은 이 문서들을 담는 정리 PR에서 함께 `Closes #26`으로 연결할 예정입니다.
+PR 연결이 확인되지 않은 Issue는 #2와 #14입니다. #2는 초기 덧셈 Issue로 `completed` 종료됐고 실제 덧셈 구현은 #7·#13에서 추적됐지만 #2와 자동 연결되지는 않았습니다. #14의 대화형 계산기 통합은 선택한 결과물 A의 최소 기준보다 큰 별도 enhancement라서 이번 제출 필수 작업에서 제외합니다. #26과 #30은 정리 Draft PR #31에 각각 `Closes #26`, `Closes #30`으로 연결됐으며 실제 종료는 PR 병합 때 이뤄집니다.
 
 ## 필수 문서
 
@@ -40,7 +40,7 @@ PR 연결이 확인되지 않은 Issue는 #2, #14, #26입니다. #2는 초기 �
 
 ## 제출 전 상태
 
-- 병합 PR: 9개 / 열린 PR: #11, #19, #28, #29
+- 병합 PR: 9개 / 열린 PR: #11, #19, #28, #29, #31(Draft)
 - 유틸 함수: `main` 3개 / 열린 PR 2개
 - 실제 우발 충돌: 3회 기록 / 필수 의도적 충돌: 0/2회
 - 트러블슈팅: stash 내용은 이 정리 PR에서 보완(김강현 역할 확인 필요), reset·amend PR 열림, revert 미수행
