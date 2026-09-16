@@ -19,7 +19,7 @@
 | [#24](https://github.com/c-b2-2/make-program-with-friends/pull/24) | 이준혁 | 병합 · #23 | PR 본문은 충족, 병합 파일의 결과·Why·주의점과 코드 펜스는 #31에서 보완 | 임효정의 기존 코멘트는 일반 확인 수준 | 이준혁의 사후 보완 답글 확인 | 임효정이 위험/대안 코멘트 1개 보강 |
 | [#28](https://github.com/c-b2-2/make-program-with-friends/pull/28) | 김보민 | 열림 · #27 | 상황·명령만 있어 결과·Why·주의점·역할 부족 | 0개 | 0회 | 임효정 필수 리뷰 → 김보민 문서 수정 commit → 승인·병합 |
 | [#29](https://github.com/c-b2-2/make-program-with-friends/pull/29) | 임효정 | 열림 · #25 | PR 본문은 상세하지만 실제 문서에 명령·결과·Why·주의점·역할 부족 | 0개 | 0회 | 김보민 리뷰 → 임효정 문서 수정 commit → 승인·병합 |
-| [#31](https://github.com/c-b2-2/make-program-with-friends/pull/31) | 이준혁 | Draft · #30·#26 | 충족, 미실행 작업은 증빙 게이트로 구분 | 최건영에게 리뷰 요청, 아직 리뷰 전 | 0회 | 나머지 실행 증빙 반영 → 최건영 승인 → 병합 |
+| [#31](https://github.com/c-b2-2/make-program-with-friends/pull/31) | 이준혁 | Draft · #30·#26 | 미실행 작업은 증빙 게이트로 구분. 공개된 리뷰 실습용 고의 오류 1줄은 수정 전 | 최건영에게 리뷰 요청, 아직 리뷰 전 | 0회 | 오류 줄 리뷰 → 이준혁 수정·답글 → 나머지 증빙 반영 → 최건영 승인·병합 |
 
 ## 개인별 최소 기준 판정
 

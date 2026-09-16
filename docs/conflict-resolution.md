@@ -70,28 +70,32 @@ git commit
 
 ## 의도적 충돌 실습 1 — PENDING: 실제 실행 전
 
-- 참여 계획: 김보민(첫 push), 임효정(두 번째 commit 및 해결)
+- 참여자 A 실제 이름·GitHub ID: `PENDING`
+- 참여자 B 실제 이름·GitHub ID: `PENDING`
+- 역할 계획: 참여자 A(첫 push), 참여자 B(두 번째 commit 및 해결)
 - 대상: `docs/conflict-practice.txt`의 `practice_1` 한 줄
 - 시작 commit: `PENDING`
-- 김보민 commit: `PENDING`
-- 임효정 commit: `PENDING`
+- 참여자 A commit: `PENDING`
+- 참여자 B commit: `PENDING`
 - 해결 merge commit: `PENDING`
 - 계획한 명령: `git fetch origin` 후 `git merge --no-ff origin/feature/cerhovah-mission-completion`
-- 계획한 최종 선택: 두 기능을 모두 보존한다는 뜻의 `practice_1 = keep_both_functions`
+- 계획한 최종 선택: 두 선택을 합의해 보존한다는 뜻의 `practice_1 = combine_both_options`
 - 실제 수행 명령과 충돌 마커: `PENDING`
 - 선택 이유와 결과: `PENDING`
 - 주의점과 참여자별 배운 점: `PENDING`
 
 ## 의도적 충돌 실습 2 — PENDING: 실제 실행 전
 
-- 참여 계획: 임효정(첫 push), 김보민(두 번째 commit 및 해결)
+- 참여자 A 실제 이름·GitHub ID: `PENDING`
+- 참여자 B 실제 이름·GitHub ID: `PENDING`
+- 역할 계획: 참여자 B(첫 push), 참여자 A(두 번째 commit 및 해결)
 - 대상: `docs/conflict-practice.txt`의 `practice_2` 한 줄
 - 시작 commit: `PENDING`
-- 임효정 commit: `PENDING`
-- 김보민 commit: `PENDING`
+- 참여자 B commit: `PENDING`
+- 참여자 A commit: `PENDING`
 - 해결 merge commit: `PENDING`
 - 계획한 명령: `git fetch origin` 후 `git merge --no-ff origin/feature/cerhovah-mission-completion`
-- 계획한 최종 선택: 두 명령을 모두 문서화한다는 뜻의 `practice_2 = document_both_commands`
+- 계획한 최종 선택: 명령과 결과를 모두 문서화한다는 뜻의 `practice_2 = document_commands_and_results`
 - 실제 수행 명령과 충돌 마커: `PENDING`
 - 선택 이유와 결과: `PENDING`
 - 주의점과 참여자별 배운 점: `PENDING`

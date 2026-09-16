@@ -34,6 +34,7 @@ PR 연결이 확인되지 않은 Issue는 #2와 #14입니다. #2는 초기 덧�
 ## 증빙
 
 - [Git 히스토리 텍스트](docs/git-history.txt)
+- [한 줄 리뷰 반영 실습](docs/review-practice.md): 공개된 고의 오류 1줄은 타인 리뷰 뒤 수정 예정(`PENDING`)
 - [Branch Protection 설정](https://github.com/c-b2-2/make-program-with-friends/settings/rules): PR 병합 필수, 승인 1명, 대화 해결, force push 차단 확인
 - [전체 Pull Requests](https://github.com/c-b2-2/make-program-with-friends/pulls?q=is%3Apr)
 - [전체 Issues](https://github.com/c-b2-2/make-program-with-friends/issues?q=is%3Aissue)
@@ -44,5 +45,6 @@ PR 연결이 확인되지 않은 Issue는 #2와 #14입니다. #2는 초기 덧�
 - 유틸 함수: `main` 3개 / 열린 PR 2개
 - 실제 우발 충돌: 3회 기록 / 필수 의도적 충돌: 0/2회
 - 트러블슈팅: stash 내용은 이 정리 PR에서 보완(김강현 역할 확인 필요), reset·amend PR 열림, revert 미수행
+- 리뷰 반영 실습: 빨간 고의 오류 1줄 공개 / 타인 리뷰·수정 commit·작성자 답글 미수행
 
 최종 남은 행동은 [사람이 직접 남겨야 할 최소 행동](docs/human-actions.md)만 따르면 됩니다.

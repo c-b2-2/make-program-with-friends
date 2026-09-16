@@ -15,9 +15,16 @@
 
 네 PR을 병합한 뒤 정리 브랜치에 최신 `main`을 merge합니다. 이때 reset과 amend 기록이 모두 들어온 상태에서 아래 #26 revert 기록을 추가하므로 같은 문서를 다시 충돌시키지 않습니다.
 
-## 2. 초보자 2명이 하는 의도적 한 줄 충돌 2회
+## 2. 팀원 5명 중 2명이 하는 의도적 한 줄 충돌 2회
 
-참여자는 김보민과 임효정입니다. 두 사람은 각자 자신의 PC/clone에서 정리 PR의 `feature/cerhovah-mission-completion` 브랜치를 사용합니다. 대상은 [conflict-practice.txt](conflict-practice.txt)의 두 줄뿐입니다. 다른 파일은 수정하지 않습니다.
+이준혁·김강현·최건영·김보민·임효정 중 실제로 참여할 2명을 모임에서 정합니다. 실습 1에서 먼저 push할 사람을 **참여자 A**, 다른 변경을 commit하고 충돌을 해결할 사람을 **참여자 B**로 부릅니다. 실습 2에서는 역할을 바꿔 두 사람 모두 한 번씩 충돌을 해결합니다.
+
+| 역할 | 실제 이름·GitHub ID | 실습 1 | 실습 2 |
+| --- | --- | --- | --- |
+| 참여자 A | `PENDING — 시작 전에 기록` | 첫 commit·push | 두 번째 commit·충돌 해결 |
+| 참여자 B | `PENDING — 시작 전에 기록` | 두 번째 commit·충돌 해결 | 첫 commit·push |
+
+두 사람은 각자 자신의 PC/clone에서 정리 PR의 `feature/cerhovah-mission-completion` 브랜치를 사용합니다. 대상은 [conflict-practice.txt](conflict-practice.txt)의 두 줄뿐이며 다른 파일은 수정하지 않습니다.
 
 ### 공통 준비
 
@@ -31,11 +38,11 @@ git rev-parse HEAD
 
 `git status --short` 출력이 비어 있고 두 사람이 같은 시작 hash를 확인한 뒤 시작합니다.
 
-### 실습 1 — 임효정이 해결
+### 실습 1 — 참여자 B가 해결
 
-1. 김보민은 `practice_1 = undecided` 줄을 `practice_1 = multiply_then_power`로 바꾸고 `git commit -m "docs: 충돌 실습 1 김보민 변경"` 후 push합니다.
-2. 임효정은 같은 시작 상태에서 그 줄을 `practice_1 = power_then_multiply`로 바꾸고 `git commit -m "docs: 충돌 실습 1 임효정 변경"`까지 실행합니다.
-3. 임효정이 원격의 김보민 commit hash를 확인한 뒤 다음 명령을 실행하면 같은 줄의 content conflict가 발생합니다.
+1. 참여자 A는 `practice_1 = undecided` 줄을 `practice_1 = use_option_a`로 바꾸고 `git commit -m "docs: 충돌 실습 1 참여자 A 변경"` 후 push합니다.
+2. 참여자 B는 같은 시작 상태에서 그 줄을 `practice_1 = use_option_b`로 바꾸고 `git commit -m "docs: 충돌 실습 1 참여자 B 변경"`까지 실행합니다.
+3. 참여자 B가 원격의 참여자 A commit hash를 확인한 뒤 다음 명령을 실행하면 같은 줄의 content conflict가 발생합니다.
 
 ```bash
 git fetch origin
@@ -45,7 +52,7 @@ git diff -- docs/conflict-practice.txt
 ```
 
 4. 해결 전에 충돌 마커가 보이는 `git diff`를 기록에 복사합니다. 시작 상태가 틀렸다면 `git merge --abort` 후 공통 준비부터 다시 합니다.
-5. 두 사람이 합의해 그 줄을 `practice_1 = keep_both_functions`로 정리하고 임효정이 아래를 실행합니다.
+5. 두 사람이 합의해 그 줄을 `practice_1 = combine_both_options`로 정리하고 참여자 B가 아래를 실행합니다.
 
 ```bash
 git add docs/conflict-practice.txt
@@ -53,13 +60,13 @@ git commit -m "docs: 충돌 실습 1 해결"
 git push origin feature/cerhovah-mission-completion
 ```
 
-### 실습 2 — 김보민이 해결
+### 실습 2 — 참여자 A가 해결
 
 1. 두 사람 모두 실습 1의 merge commit까지 `git pull --ff-only`하고 깨끗한 작업 트리와 같은 시작 hash를 확인합니다.
-2. 임효정은 `practice_2 = undecided` 줄을 `practice_2 = amend_then_reset`으로 바꾸고 `git commit -m "docs: 충돌 실습 2 임효정 변경"` 후 push합니다.
-3. 김보민은 같은 시작 상태에서 그 줄을 `practice_2 = reset_then_amend`로 바꾸고 `git commit -m "docs: 충돌 실습 2 김보민 변경"`까지 실행합니다.
-4. 김보민이 `git fetch origin`과 같은 `git merge --no-ff origin/feature/cerhovah-mission-completion`을 실행하고 `git diff -- docs/conflict-practice.txt`로 충돌 마커를 기록합니다.
-5. 두 사람이 합의해 그 줄을 `practice_2 = document_both_commands`로 정리한 뒤 `git add docs/conflict-practice.txt`, `git commit -m "docs: 충돌 실습 2 해결"`, `git push`를 실행합니다.
+2. 참여자 B는 `practice_2 = undecided` 줄을 `practice_2 = document_commands_first`로 바꾸고 `git commit -m "docs: 충돌 실습 2 참여자 B 변경"` 후 push합니다.
+3. 참여자 A는 같은 시작 상태에서 그 줄을 `practice_2 = document_results_first`로 바꾸고 `git commit -m "docs: 충돌 실습 2 참여자 A 변경"`까지 실행합니다.
+4. 참여자 A가 `git fetch origin`과 같은 `git merge --no-ff origin/feature/cerhovah-mission-completion`을 실행하고 `git diff -- docs/conflict-practice.txt`로 충돌 마커를 기록합니다.
+5. 두 사람이 합의해 그 줄을 `practice_2 = document_commands_and_results`로 정리한 뒤 `git add docs/conflict-practice.txt`, `git commit -m "docs: 충돌 실습 2 해결"`, `git push`를 실행합니다.
 
 두 실습 모두 같은 파일의 같은 줄을 서로 다르게 수정하므로 비자명 충돌 기준을 충족합니다. [충돌 기록](conflict-resolution.md)의 `PENDING — 실제 실행 전` 구역은 실행 후에만 실제 시작 hash, 양쪽 commit, merge commit, 실제 명령, 충돌 마커, 선택 이유, 결과, 주의점과 각자 배운 점으로 바꿉니다.
 
@@ -75,7 +82,33 @@ git push origin feature/cerhovah-mission-completion
 
 병합 후 작성한 답글을 평가자가 당시 상호작용으로 인정하지 않을 수 있다는 한계는 숨기지 않습니다. 소급 조작 대신 “사후 보완”이라고 표시하고, 최종 제출 전에 평가 기준을 확인합니다.
 
-## 4. 정리 PR에서 #26 revert까지 완료
+## 4. 이준혁의 한 줄 리뷰 반영 실습
+
+[리뷰 실습 문서](review-practice.md)의 빨간 한 줄은 PR #31에서 **리뷰 지적 → 작성자 수정 → 답글** 흐름을 분명하게 남기기 위한 공개된 고의 오류입니다. 사실 안내로 사용하지 않으며, 이미 완료한 #21 사후 답글과 별개의 보강 실습입니다.
+
+1. PR #31의 최종 리뷰어로 최건영은 이미 지정돼 있습니다. 이준혁은 실제 리뷰 전에 다음 문장을 별도로 전달합니다.
+
+   > PR #31을 리뷰하실 때 `docs/review-practice.md`의 빨간 한 줄에 “`git revert`는 기존 커밋을 삭제하지 않고, 반대 변경을 담은 새 커밋을 추가해 이력을 보존한다고 고쳐주세요”라고 지적해주세요.
+
+2. 최건영은 PR #31의 해당 줄에 위 취지의 실제 리뷰 코멘트를 남깁니다. 이 단계에서는 아직 Approve하지 않습니다.
+3. 이준혁은 리뷰가 공개된 뒤에만 `docs/review-practice.md` 전체를 다음 완료형 내용으로 바꾸고, 실제 리뷰 댓글 URL과 수정 commit hash도 채웁니다.
+
+   ```markdown
+   # 한 줄 리뷰 반영 실습
+
+   > PR #31에서 타인의 줄 단위 리뷰를 받은 뒤 작성자가 수정한 결과입니다.
+
+   `git revert`는 기존 커밋을 삭제하지 않고, 반대 변경을 담은 새 커밋을 추가해 공유 이력을 보존합니다.
+
+   - 리뷰어: 최건영 (`00skgun`)
+   - 리뷰 댓글: `실제 URL로 교체`
+   - 수정 commit: `실제 hash로 교체`
+   ```
+
+4. 이준혁은 `git commit -m "docs: 리뷰 지적을 반영해 revert 설명 수정"`으로 commit·push하고 리뷰 스레드에 “지적대로 기존 이력을 보존하는 새 취소 커밋이라고 수정했습니다”라고 답합니다.
+5. 완료 기준은 **타인 계정의 줄 단위 리뷰, 그 뒤의 수정 commit, 작성자 답글** 세 가지입니다. 고의 오류를 발견 전부터 정답으로 취급하거나 리뷰가 있었던 것처럼 미리 표시하지 않습니다.
+
+## 5. 정리 PR에서 #26 revert까지 완료
 
 새 PR을 하나 더 만들지 않습니다. Draft PR [#31](https://github.com/c-b2-2/make-program-with-friends/pull/31)에 `Closes #30`과 `Closes #26`이 함께 들어갔습니다. 다음 순서로 진행합니다.
 
@@ -85,18 +118,19 @@ git push origin feature/cerhovah-mission-completion
 4. 최건영이 두 commit과 파일 복구를 확인해 정리 PR에 구체적 코멘트와 Approve를 남깁니다.
 5. 작성자 이준혁은 최건영의 리뷰에 답하거나 수정 commit으로 반영합니다. 본인 PR을 스스로 리뷰·승인하지 않습니다.
 
-## 5. 정리 PR 최종 병합
+## 6. 정리 PR 최종 병합
 
 - 최건영이 두 충돌, revert, 열린 PR 병합과 테스트 결과를 확인합니다.
 - 병합 직전 최신 `main`을 정리 브랜치에 반영합니다. 에이전트가 `README.md`, `SUBMISSION.md`, 테스트와 `docs/git-history.txt`를 최종 상태로 갱신하고, 날짜가 있는 감사 문서에는 “최종 상태는 SUBMISSION 참조”를 표시합니다.
 - 최건영이 승인 상태와 대화 해결을 확인한 뒤 정리 PR을 병합합니다.
 
-## 6. 최종 확인
+## 7. 최종 확인
 
 - [ ] #11, #19, #28, #29가 병합되고 정리 PR #31이 #30과 #26을 함께 닫음
 - [ ] 다섯 명 모두 병합 PR 2개 이상, 타인 실질 리뷰 2개 이상, 자기 PR 피드백 반영 1회 이상
 - [ ] 과거 PR 보완은 실제 작성자/리뷰어 계정에서 사실대로 남음
 - [ ] 의도적 충돌 2회의 실제 commit·marker·결과가 기록됨
+- [ ] 리뷰 실습의 빨간 오류 한 줄이 타인 리뷰 뒤 올바른 문장으로 수정되고 답글이 남음
 - [ ] amend/reset/revert/stash 4종에 상황·명령·결과·Why·주의점과 전원 이름/역할이 있음
 - [ ] 함수 5개와 사용 예시가 최신 `main`에서 동작하고 전체 테스트가 통과함
 - [ ] 팀이 [검증·AI 사용 기록](team-verification.md)을 읽고 오류를 정정함(미션 외 책임 분산용 확인)
