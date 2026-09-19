@@ -18,7 +18,6 @@ git stash list
 git switch main
 git switch feature/stash-practice
 git stash pop
-<<<<<<< HEAD
 git status --short
 ```
 
@@ -35,8 +34,7 @@ git status --short
 - `git stash pop`은 현재 작업과 겹치면 충돌할 수 있으므로 먼저 작업 트리가 깨끗한지 확인한다.
 - 복원 결과를 확인하기 전 stash를 보존하려면 `pop` 대신 `git stash apply`를 사용하고, 확인 후 `git stash drop`으로 지운다.
 - `-u`는 untracked 파일을 포함하지만 ignored 파일까지 포함하지는 않는다.
-=======
-```
+
 
 ## 시나리오: git revert
 
@@ -103,4 +101,36 @@ e5fa1a6 chore: revert 실습용 파일 추가
 `feature/revert-practice`의 원래 커밋과 revert 커밋을 기존 PR 브랜치에 fast-forward로 반영한다.
 현재 main 병합은 대기 중이다. 팀원 1명 이상의 Approve 후 **merge commit 방식**으로 병합해야
 두 실습 커밋을 main 이력에도 유지할 수 있다. Squash merge는 사용하지 않는다.
->>>>>>> origin/main
+
+
+## git commit --amend 실습
+
+### 작성자
+```
+- 임효정
+```
+
+### git commit --amend 실습 전
+```
+3b60279 (HEAD -> feature/etc) add modulo function
+e6104b4 feat: add power utility
+3486a5a (origin/main, origin/HEAD, master) Merge pull request #6 from c-b2-2/feature/lee-subtract
+0789bb8 Merge pull request #7 from c-b2-2/feature/5-add-main-py
+18c3fd5 Merge pull request #4 from c-b2-2/docs/commit-guidelines
+eee867a (origin/feature/lee-subtract) feat: add subtraction utility
+4b7255d feat: add main py with hello world
+de29726 (origin/docs/commit-guidelines) docs: 커밋 메시지 규칙 작성
+```
+
+### git commit --amend 실습 후
+```
+380c23a (HEAD -> feature/etc) feat: add modulo function
+e6104b4 feat: add power utility
+3486a5a (origin/main, origin/HEAD, master) Merge pull request #6 from c-b2-2/feature/lee-subtract
+0789bb8 Merge pull request #7 from c-b2-2/feature/5-add-main-py
+18c3fd5 Merge pull request #4 from c-b2-2/docs/commit-guidelines
+eee867a (origin/feature/lee-subtract) feat: add subtraction utility
+4b7255d feat: add main py with hello world
+de29726 (origin/docs/commit-guidelines) docs: 커밋 메시지 규칙 작성
+4251988 chore: init
+```
