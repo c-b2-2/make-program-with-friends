@@ -208,24 +208,6 @@ practice = stash untracked file and restore safely
 - apply 후에도 `git stash list`에 보관 항목이 남았다.
 - 복원 확인 후 이번 실습 stash만 drop했고, 최종 stash 목록은 비어 있다. 복원 파일은 유지했다.
 
-### 주의점
-
-- `-u`는 untracked 파일을 포함하지만 ignored 파일은 포함하지 않는다.
-- apply는 stash를 삭제하지 않는다. 복원 내용을 확인한 다음 해당 항목을 drop한다.
-- 다른 stash가 있다면 목록과 메시지를 확인해 실습 항목을 식별한다.
-- apply 중 충돌하면 해결·검증이 끝나기 전에 보관본을 삭제하지 않는다.
-
-### 추가 보관·복원 검증 — 실행 완료 (Codex 실행)
-
-2026-09-19 최건영의 요청으로 Codex가 아래 검증을 실행했다. 최건영 본인의 터미널 직접 실행이나 이해도 확인을 대신하는 기록은 아니다.
-
-- 시작 커밋: `1a21ad1cc061cbfa4f5d367e46e08c65141cb45c`
-- 시작 상태: 작업 트리와 stash 목록 모두 비어 있음.
-- 이번에는 실습 파일이 이미 tracked 상태였다. 파일에 아래 한 줄을 추가한 후 해당 파일의 변경만 보관했다. 따라서 `-u`는 필요하지 않았다.
-
-```text
-verification = tracked change restored with stash apply
-```
 
 실제 실행 명령:
 
