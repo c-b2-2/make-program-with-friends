@@ -15,18 +15,11 @@
 
 네 PR을 병합한 뒤 정리 브랜치에 최신 `main`을 merge합니다. 이때 reset과 amend 기록이 모두 들어온 상태에서 아래 #26 revert 기록을 추가하므로 같은 문서를 다시 충돌시키지 않습니다.
 
-## 2. 팀원 5명 중 2명이 하는 의도적 한 줄 충돌 2회
+## 2. 의도적 한 줄 충돌 실습 2 마무리
 
-이준혁·김강현·최건영·김보민·임효정 중 실제로 참여할 2명을 모임에서 정합니다. 실습 1에서 먼저 push할 사람을 **참여자 A**, 다른 변경을 commit하고 충돌을 해결할 사람을 **참여자 B**로 부릅니다. 실습 2에서는 역할을 바꿔 두 사람 모두 한 번씩 충돌을 해결합니다.
+2026-09-19 Git 이력 확인 결과, 이준혁 (`Cerhovah`)과 최건영 (`00skgun`)의 실습 1은 같은 줄 충돌로 확인됐습니다. 실습 2 시도에는 최건영의 `practice_2` 변경 커밋이 없어 계획한 동일 줄 충돌로 세지 않습니다. [충돌 기록](conflict-resolution.md)에 실제 부모 커밋과 병합 결과를 구분해 적었습니다.
 
-| 역할 | 실제 이름·GitHub ID | 실습 1 | 실습 2 |
-| --- | --- | --- | --- |
-| 참여자 A | `PENDING — 시작 전에 기록` | 첫 commit·push | 두 번째 commit·충돌 해결 |
-| 참여자 B | `PENDING — 시작 전에 기록` | 두 번째 commit·충돌 해결 | 첫 commit·push |
-
-두 사람은 각자 자신의 PC/clone에서 정리 PR의 `feature/cerhovah-mission-completion` 브랜치를 사용합니다. 대상은 [conflict-practice.txt](conflict-practice.txt)의 두 줄뿐이며 다른 파일은 수정하지 않습니다.
-
-### 공통 준비
+두 사람은 **서로 다른 clone**에서 `feature/cerhovah-mission-completion` 브랜치의 같은 최신 커밋을 받아 시작합니다. 각 작업 트리는 깨끗해야 하고, 시작 hash를 서로 확인해야 합니다.
 
 ```bash
 git fetch origin
@@ -36,13 +29,7 @@ git status --short
 git rev-parse HEAD
 ```
 
-`git status --short` 출력이 비어 있고 두 사람이 같은 시작 hash를 확인한 뒤 시작합니다.
-
-### 실습 1 — 참여자 B가 해결
-
-1. 참여자 A는 `practice_1 = undecided` 줄을 `practice_1 = use_option_a`로 바꾸고 `git commit -m "docs: 충돌 실습 1 참여자 A 변경"` 후 push합니다.
-2. 참여자 B는 같은 시작 상태에서 그 줄을 `practice_1 = use_option_b`로 바꾸고 `git commit -m "docs: 충돌 실습 1 참여자 B 변경"`까지 실행합니다.
-3. 참여자 B가 원격의 참여자 A commit hash를 확인한 뒤 다음 명령을 실행하면 같은 줄의 content conflict가 발생합니다.
+현재 파일의 시작 값은 `practice_2 = document_commands_and_results`입니다. 최건영은 이 줄을 `practice_2 = document_commands_first`로 바꾸고 자기 계정으로 commit·push합니다. 이준혁은 **원격 변경을 pull하지 않은 상태에서**, 같은 시작 값의 같은 줄을 `practice_2 = document_results_first`로 바꾸고 별도 commit을 남깁니다. 그다음 이준혁이 다음 명령으로 원격 변경과 병합합니다.
 
 ```bash
 git fetch origin
@@ -51,24 +38,9 @@ git status
 git diff -- docs/conflict-practice.txt
 ```
 
-4. 해결 전에 충돌 마커가 보이는 `git diff`를 기록에 복사합니다. 시작 상태가 틀렸다면 `git merge --abort` 후 공통 준비부터 다시 합니다.
-5. 두 사람이 합의해 그 줄을 `practice_1 = combine_both_options`로 정리하고 참여자 B가 아래를 실행합니다.
+두 변경이 같은 줄에서 충돌했는지 마커를 확인하고 기록합니다. 시작 hash가 다르거나 다른 파일 변경이 섞였다면 `git merge --abort`로 중단하고 공통 준비부터 다시 합니다. 합의 후 `practice_2 = document_commands_and_results`로 마커를 제거하고 이준혁이 `git add docs/conflict-practice.txt`, `git commit`, `git push`를 수행합니다.
 
-```bash
-git add docs/conflict-practice.txt
-git commit -m "docs: 충돌 실습 1 해결"
-git push origin feature/cerhovah-mission-completion
-```
-
-### 실습 2 — 참여자 A가 해결
-
-1. 두 사람 모두 실습 1의 merge commit까지 `git pull --ff-only`하고 깨끗한 작업 트리와 같은 시작 hash를 확인합니다.
-2. 참여자 B는 `practice_2 = undecided` 줄을 `practice_2 = document_commands_first`로 바꾸고 `git commit -m "docs: 충돌 실습 2 참여자 B 변경"` 후 push합니다.
-3. 참여자 A는 같은 시작 상태에서 그 줄을 `practice_2 = document_results_first`로 바꾸고 `git commit -m "docs: 충돌 실습 2 참여자 A 변경"`까지 실행합니다.
-4. 참여자 A가 `git fetch origin`과 같은 `git merge --no-ff origin/feature/cerhovah-mission-completion`을 실행하고 `git diff -- docs/conflict-practice.txt`로 충돌 마커를 기록합니다.
-5. 두 사람이 합의해 그 줄을 `practice_2 = document_commands_and_results`로 정리한 뒤 `git add docs/conflict-practice.txt`, `git commit -m "docs: 충돌 실습 2 해결"`, `git push`를 실행합니다.
-
-두 실습 모두 같은 파일의 같은 줄을 서로 다르게 수정하므로 비자명 충돌 기준을 충족합니다. [충돌 기록](conflict-resolution.md)의 `PENDING — 실제 실행 전` 구역은 실행 후에만 실제 시작 hash, 양쪽 commit, merge commit, 실제 명령, 충돌 마커, 선택 이유, 결과, 주의점과 각자 배운 점으로 바꿉니다.
+마지막으로 `docs/conflict-resolution.md`에 공통 시작 hash, 두 변경 커밋, 해결 병합 커밋, 실제 마커·명령·선택 이유·결과·두 사람의 배운 점을 적습니다. `git show --remerge-diff <해결 병합 커밋>`에서 **`practice_2` 같은 줄의 양쪽 값**이 보여야 실습 2 완료로 표시합니다. 팀원 리뷰와 Approve 뒤 PR을 병합합니다.
 
 ## 3. 과거 PR의 짧은 증빙 보완
 

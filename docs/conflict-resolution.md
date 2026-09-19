@@ -2,7 +2,7 @@
 
 이 문서는 Git 커밋과 `git show --remerge-diff`로 확인되는 실제 충돌을 기록합니다.
 
-> 아래 세 건은 **우발적으로 발생한 실제 충돌**입니다. 당시 터미널 명령 전문은 저장되지 않았으므로 명령 순서는 Git 히스토리를 바탕으로 재구성했습니다. 따라서 미션이 요구하는 “의도적으로 만든 충돌 실습 2회”에는 세지 않으며, 별도의 의도적 실습 2회가 필요합니다.
+> 아래 세 건은 **우발적으로 발생한 실제 충돌**입니다. 당시 터미널 명령 전문은 저장되지 않았으므로 명령 순서는 Git 히스토리를 바탕으로 재구성했습니다. 따라서 미션이 요구하는 “의도적으로 만든 충돌 실습 2회”에는 세지 않습니다. 의도적 실습은 아래에 별도로 기록합니다.
 
 ## 우발 충돌 1: 곱셈 함수와 덧셈 함수 통합
 
@@ -68,87 +68,61 @@ git commit
 
 두 섹션 모두 협업 지침에 필요해 하나를 선택하지 않고 순서대로 합쳤습니다. 문서도 같은 끝부분에 동시에 내용을 추가하면 코드처럼 충돌하며, 제목 단계와 문장 연결까지 함께 확인해야 한다는 점을 배웠습니다.
 
-## 의도적 충돌 실습 1 
+## 의도적 충돌 실습 1 — 확인됨
 
-참여자 A 실제 이름 / GitHub ID:
-이준혁 / Cerhovah
+- 참여자: A 이준혁 (`Cerhovah`), B 최건영 (`00skgun`)
+- 역할: A가 먼저 변경하고, B가 독립적으로 변경한 뒤 병합 충돌을 해결
+- 대상: `docs/conflict-practice.txt`의 `practice_1`
+- 공통 시작 커밋: `32f1d9199c51e22de159bbd629b6ce693fe1792c`
+- A 변경 커밋: `8213827284e6d7c37b1d4583e73246fc575d023a` — `use_option_a`
+- B 변경 커밋: `33ecd38c09eb6e2158cba019c7d57d031d276dd9` — `use_option_b`
+- B의 해결 병합 커밋: `4d112a4eeceb952ad9ef136097824b6290a983a4`
 
-참여자 B 실제 이름 / GitHub ID:
-최건영 / 00skgun
+두 변경 커밋의 부모가 같은 시작 커밋입니다. `git show --remerge-diff 4d112a4`로 확인한 충돌 부분은 다음과 같습니다. 마커 옆의 커밋 표시는 Git이 병합을 재현하며 붙인 값이며, 아래 예시는 문서용으로 두 칸 들여썼습니다.
 
-실습 1 시작 hash:
-32f1d9199c51e22de159bbd629b6ce693fe1792c
+```text
+  <<<<<<< 33ecd38 (docs: 충돌 실습 1 참여자 B 변경)
+  practice_1 = use_option_b
+  =======
+  practice_1 = use_option_a
+  >>>>>>> 8213827 (docs: 충돌 실습 1 참여자 A 변경)
+```
 
-A commit hash:
-8213827284e6d7c37b1d4583e73246fc575d023a
+참여자가 제공한 명령 기록은 `git fetch origin`, `git merge --no-ff origin/feature/cerhovah-mission-completion`, `git status`, `git diff -- docs/conflict-practice.txt` 순서입니다. 터미널 출력 전체는 보존되지 않았지만, Git 이력에서 같은 줄 충돌과 해결 결과를 독립적으로 확인했습니다. 두 선택의 의미를 함께 보존하기 위해 `practice_1 = combine_both_options`로 정리했습니다.
 
-B commit hash:
-33ecd38c09eb6e2158cba019c7d57d031d276dd9
+이준혁은 같은 시작점에서 같은 줄을 다르게 수정하면 Git이 자동으로 선택할 수 없음을 확인했고, 최건영은 마커 양쪽을 확인해 합의한 값으로 정리한 뒤 병합 커밋을 남기는 과정을 수행했습니다. 충돌을 재현하려면 먼저 push된 변경을 다른 참가자가 자신의 커밋 전에 pull하지 않아야 합니다.
 
-실습 1 merge commit hash:
-4d112a4eeceb952ad9ef136097824b6290a983a4
+## 의도적 충돌 실습 2 시도 — 계획과 이력이 다름
 
-실제 사용 명령:
-git fetch origin
-git merge --no-ff origin/feature/cerhovah-mission-completion
-git status
-git diff -- docs/conflict-practice.txt
+- 계획: 실습 1 해결 커밋 `4d112a4`에서 두 사람이 시작해 `practice_2`를 서로 다르게 수정하고, 이준혁이 충돌을 해결
+- 확인된 A 변경 커밋: `19cd9f4758859beabcf536a6413efb0428481267` — `practice_2 = document_results_first`
+- 확인된 병합 커밋: `2ae0b6c5e2ba26938bd5e76108c817b63c049f8d` — 최종 파일은 `practice_2 = document_commands_and_results`
+- B의 `practice_2 = document_commands_first` 변경 커밋: 이 병합 이력에서 확인되지 않음
 
-충돌 marker:
-<<<<<<< HEAD
-practice_1 = use_option_b
-=======
-practice_1 = use_option_a
->>>>>>> origin/feature/cerhovah-mission-completion
+`19cd9f4`의 부모는 실습 1 해결 커밋이 아닌 `8213827`입니다. `2ae0b6c`의 다른 부모는 실습 1 해결 커밋 `4d112a4`이고, 이쪽의 `practice_2` 값은 아직 `undecided`입니다. 따라서 두 사람이 실습 1 해결 결과에서 같은 줄을 각각 수정했다는 설명은 이 Git 이력과 맞지 않습니다.
 
-최종 선택:
-practice_1 = combine_both_options
+`git show --remerge-diff 2ae0b6c`에는 실제 content conflict가 표시됩니다. 다만 그 충돌에는 실습 1의 `practice_1` 값 차이가 포함되며, `practice_2`는 A 쪽에서만 변경됐습니다.
 
-선택 이유:
-두 참가자가 같은 시작 상태에서 practice_1 한 줄을 서로 다른 값으로 수정하여 충돌을 재현했고, 두 변경을 확인한 뒤 합의한 결과를 practice_1 = combine_both_options로 정리함.
+```text
+  <<<<<<< 19cd9f4 (docs: 충돌 실습 2 참여자 A 변경)
+  practice_1 = use_option_a
+  practice_2 = document_results_first
+  =======
+  practice_1 = combine_both_options
+  practice_2 = undecided
+  >>>>>>> 4d112a4 (docs: 충돌 실습 1 해결)
+```
 
-결과:
-참여자 A가 practice_1 = use_option_a 변경을 commit·push하고, 참여자 B가 같은 시작점에서 practice_1 = use_option_b를 별도로 commit한 뒤 원격 브랜치를 merge하여 실제 content conflict를 발생시킴. 충돌을 합의된 값으로 해결한 뒤 merge commit을 생성하고 원격 브랜치에 push함.
+병합 결과 파일의 `practice_1 = combine_both_options`와 `practice_2 = document_commands_and_results`는 확인됐습니다. 그러나 계획한 **두 사람의 `practice_2` 동일 줄 충돌**은 확인되지 않아 실습 2 완료 증빙으로 세지 않습니다. 두 참가자가 현재 공유 브랜치의 같은 커밋에서 다시 시작해 각자 `practice_2`를 수정하고, 변경 커밋 2개와 해결 병합 커밋을 남겨야 합니다. 진행 내용은 [Issue #33](https://github.com/c-b2-2/make-program-with-friends/issues/33), 절차는 [최종 마무리 실행표](human-actions.md)에 있습니다.
 
-주의점:
-충돌을 해결할 참가자는 상대가 먼저 push한 변경을 미리 pull하지 않아야 함. 같은 시작 commit에서 각각 독립적으로 변경을 commit한 뒤 fetch와 merge를 해야 의도한 동일 줄 충돌을 재현할 수 있음.
-
-각자 배운 점:
-이준혁: 같은 시작 commit에서 동일한 줄을 서로 다르게 수정하면 Git이 자동으로 어느 변경을 선택할지 결정할 수 없어 실제 content conflict가 발생한다는 것을 확인함.
-
-최건영: 충돌 발생 후 HEAD와 원격 변경의 차이를 직접 확인하고, 충돌 marker를 제거한 뒤 합의한 최종 내용을 선택하여 add → commit → push 순서로 충돌을 해결하는 과정을 확인함.
-
-## 의도적 충돌 실습 2 — 완료
-
-- 참여자 A 실제 이름·GitHub ID: `이준혁 / Cerhovah`
-
-- 참여자 B 실제 이름·GitHub ID: `최건영 / 00skgun`
-
-- 역할: 참여자 B(첫 commit·push), 참여자 A(두 번째 commit·충돌 해결)
-
-- 대상: `docs/conflict-practice.txt`의 `practice_2` 한 줄
-
-- 시작 commit: `4d112a4eeceb952ad9ef136097824b6290a983a4`
-
-- 참여자 B commit: `[최건영 측 실습 2 B commit hash 입력]`
-
-- 참여자 A commit: `19cd9f4758859beabcf536a6413efb0428481267`
-
-- 해결 merge commit: `2ae0b6c5e2ba26938bd5e76108c817b63c049f8d`
-
-- 실제 수행 명령:
-
-```bash
-git fetch origin
-git merge --no-ff origin/feature/cerhovah-mission-completion
-git status
-git diff -- docs/conflict-practice.txt
 ## 검증 방법
-
-각 과거 충돌은 다음 명령으로 다시 확인할 수 있습니다.
 
 ```bash
 git show --remerge-diff 2507c00
 git show --remerge-diff fd980f2
 git show --remerge-diff bad04f8
+git show --remerge-diff 4d112a4
+git show --remerge-diff 2ae0b6c
+git rev-list --parents -n 1 19cd9f4
+git rev-list --parents -n 1 2ae0b6c
 ```
