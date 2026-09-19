@@ -159,3 +159,66 @@ eee867a (origin/feature/lee-subtract) feat: add subtraction utility
 de29726 (origin/docs/commit-guidelines) docs: 커밋 메시지 규칙 작성
 4251988 chore: init
 ```
+
+## 시나리오: 최건영의 stash 보관·복원 검증
+
+### 참여자와 수행 범위
+
+- 최건영 (`00skgun`): 실습 요청. 아래 직접 재현 및 결과 확인은 아직 대기 중이다.
+- Codex: 사용자 요청으로 로컬 명령 실행, 파일 복원 확인 및 기록 작성.
+- 이 기록만으로 최건영이 직접 명령을 실행했다고 주장하지 않는다. 직접 재현 후 본인의 실제 결과와 배운 점을 추가한다.
+
+### 상황과 선택 이유
+
+새로 만든 미완성 파일을 잠시 치웠다가 복원하는 상황이다. 아직 추적되지 않은 파일이므로 `-u`를 사용했다. 복원 확인 전 보관본을 유지하기 위해 `pop` 대신 `apply`를 선택했다.
+
+### 실행 환경과 명령
+
+- 날짜: 2026-09-19
+- 브랜치: `feature/00skgun-stash-practice`
+- 시작 커밋: `7e2731be178d8b68aa3868b0c4e605e242729486`
+- 대상: `docs/stash-practice-00skgun.txt` 한 파일
+- 시작 당시 기존 stash와 작업 트리 변경 없음.
+
+```bash
+git status --short
+git stash push -u -m "00skgun stash demonstration" -- docs/stash-practice-00skgun.txt
+git stash list
+git rev-parse 'stash@{0}'
+git stash apply 'stash@{0}'
+git stash list
+git status --short
+# 파일 내용 복원을 확인한 다음 실행
+git stash drop 'stash@{0}'
+git stash list
+```
+
+### 실제 관찰 결과
+
+- 시작 상태: `?? docs/stash-practice-00skgun.txt`
+- stash 생성 후 PowerShell `Test-Path docs/stash-practice-00skgun.txt`: `False`.
+- 생성된 stash 해시: `9e03ef0abab06b732fcd10b32b82f6c7bcba064c`.
+- apply 후 아래 두 줄이 복원됐고 파일은 다시 untracked 상태였다.
+
+```text
+participant = 00skgun
+practice = stash untracked file and restore safely
+```
+
+- apply 후에도 `git stash list`에 보관 항목이 남았다.
+- 복원 확인 후 이번 실습 stash만 drop했고, 최종 stash 목록은 비어 있다. 복원 파일은 유지했다.
+
+### 주의점
+
+- `-u`는 untracked 파일을 포함하지만 ignored 파일은 포함하지 않는다.
+- apply는 stash를 삭제하지 않는다. 복원 내용을 확인한 다음 해당 항목을 drop한다.
+- 다른 stash가 있다면 목록과 메시지를 확인해 실습 항목을 식별한다.
+- apply 중 충돌하면 해결·검증이 끝나기 전에 보관본을 삭제하지 않는다.
+
+### 최건영 직접 재현 및 확인 — 대기
+
+현재 실습 파일이 untracked인 상태에서 위 명령을 직접 실행할 수 있다. 실행 전에 `git stash list`와 `git status --short`를 확인하고 대상 파일만 보관한다. 위 해시는 Codex 시연의 값이며 본인 실행 시 생성되는 해시로 별도 기록한다.
+
+- 본인 실행 stash 해시: 미기록
+- 보관 후 파일이 사라짐 / apply 후 두 줄 복원 / apply 후 stash 유지 / drop 후 해당 항목 제거: 확인 대기
+- 본인이 이해한 `apply`와 `pop` 차이: 직접 작성 대기
