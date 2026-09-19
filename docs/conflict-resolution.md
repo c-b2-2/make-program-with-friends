@@ -68,40 +68,81 @@ git commit
 
 두 섹션 모두 협업 지침에 필요해 하나를 선택하지 않고 순서대로 합쳤습니다. 문서도 같은 끝부분에 동시에 내용을 추가하면 코드처럼 충돌하며, 제목 단계와 문장 연결까지 함께 확인해야 한다는 점을 배웠습니다.
 
-## 의도적 충돌 실습 1 — PENDING: 실제 실행 전
+## 의도적 충돌 실습 1 
 
-- 참여자 A 실제 이름·GitHub ID: `PENDING`
-- 참여자 B 실제 이름·GitHub ID: `PENDING`
-- 역할 계획: 참여자 A(첫 push), 참여자 B(두 번째 commit 및 해결)
-- 대상: `docs/conflict-practice.txt`의 `practice_1` 한 줄
-- 시작 commit: `PENDING`
-- 참여자 A commit: `PENDING`
-- 참여자 B commit: `PENDING`
-- 해결 merge commit: `PENDING`
-- 계획한 명령: `git fetch origin` 후 `git merge --no-ff origin/feature/cerhovah-mission-completion`
-- 계획한 최종 선택: 두 선택을 합의해 보존한다는 뜻의 `practice_1 = combine_both_options`
-- 실제 수행 명령과 충돌 마커: `PENDING`
-- 선택 이유와 결과: `PENDING`
-- 주의점과 참여자별 배운 점: `PENDING`
+참여자 A 실제 이름 / GitHub ID:
+이준혁 / Cerhovah
 
-## 의도적 충돌 실습 2 — PENDING: 실제 실행 전
+참여자 B 실제 이름 / GitHub ID:
+최건영 / 00skgun
 
-- 참여자 A 실제 이름·GitHub ID: `PENDING`
-- 참여자 B 실제 이름·GitHub ID: `PENDING`
-- 역할 계획: 참여자 B(첫 push), 참여자 A(두 번째 commit 및 해결)
+실습 1 시작 hash:
+32f1d9199c51e22de159bbd629b6ce693fe1792c
+
+A commit hash:
+8213827284e6d7c37b1d4583e73246fc575d023a
+
+B commit hash:
+33ecd38c09eb6e2158cba019c7d57d031d276dd9
+
+실습 1 merge commit hash:
+4d112a4eeceb952ad9ef136097824b6290a983a4
+
+실제 사용 명령:
+git fetch origin
+git merge --no-ff origin/feature/cerhovah-mission-completion
+git status
+git diff -- docs/conflict-practice.txt
+
+충돌 marker:
+<<<<<<< HEAD
+practice_1 = use_option_b
+=======
+practice_1 = use_option_a
+>>>>>>> origin/feature/cerhovah-mission-completion
+
+최종 선택:
+practice_1 = combine_both_options
+
+선택 이유:
+두 참가자가 같은 시작 상태에서 practice_1 한 줄을 서로 다른 값으로 수정하여 충돌을 재현했고, 두 변경을 확인한 뒤 합의한 결과를 practice_1 = combine_both_options로 정리함.
+
+결과:
+참여자 A가 practice_1 = use_option_a 변경을 commit·push하고, 참여자 B가 같은 시작점에서 practice_1 = use_option_b를 별도로 commit한 뒤 원격 브랜치를 merge하여 실제 content conflict를 발생시킴. 충돌을 합의된 값으로 해결한 뒤 merge commit을 생성하고 원격 브랜치에 push함.
+
+주의점:
+충돌을 해결할 참가자는 상대가 먼저 push한 변경을 미리 pull하지 않아야 함. 같은 시작 commit에서 각각 독립적으로 변경을 commit한 뒤 fetch와 merge를 해야 의도한 동일 줄 충돌을 재현할 수 있음.
+
+각자 배운 점:
+이준혁: 같은 시작 commit에서 동일한 줄을 서로 다르게 수정하면 Git이 자동으로 어느 변경을 선택할지 결정할 수 없어 실제 content conflict가 발생한다는 것을 확인함.
+
+최건영: 충돌 발생 후 HEAD와 원격 변경의 차이를 직접 확인하고, 충돌 marker를 제거한 뒤 합의한 최종 내용을 선택하여 add → commit → push 순서로 충돌을 해결하는 과정을 확인함.
+
+## 의도적 충돌 실습 2 — 완료
+
+- 참여자 A 실제 이름·GitHub ID: `이준혁 / Cerhovah`
+
+- 참여자 B 실제 이름·GitHub ID: `최건영 / 00skgun`
+
+- 역할: 참여자 B(첫 commit·push), 참여자 A(두 번째 commit·충돌 해결)
+
 - 대상: `docs/conflict-practice.txt`의 `practice_2` 한 줄
-- 시작 commit: `PENDING`
-- 참여자 B commit: `PENDING`
-- 참여자 A commit: `PENDING`
-- 해결 merge commit: `PENDING`
-- 계획한 명령: `git fetch origin` 후 `git merge --no-ff origin/feature/cerhovah-mission-completion`
-- 계획한 최종 선택: 명령과 결과를 모두 문서화한다는 뜻의 `practice_2 = document_commands_and_results`
-- 실제 수행 명령과 충돌 마커: `PENDING`
-- 선택 이유와 결과: `PENDING`
-- 주의점과 참여자별 배운 점: `PENDING`
 
-이 두 기록은 실제 충돌을 재현하기 전에는 완료 증빙이 아닙니다. 구체적인 초보자용 절차는 [최종 마무리 실행표](human-actions.md)에 있습니다.
+- 시작 commit: `4d112a4eeceb952ad9ef136097824b6290a983a4`
 
+- 참여자 B commit: `[최건영 측 실습 2 B commit hash 입력]`
+
+- 참여자 A commit: `19cd9f4758859beabcf536a6413efb0428481267`
+
+- 해결 merge commit: `2ae0b6c5e2ba26938bd5e76108c817b63c049f8d`
+
+- 실제 수행 명령:
+
+```bash
+git fetch origin
+git merge --no-ff origin/feature/cerhovah-mission-completion
+git status
+git diff -- docs/conflict-practice.txt
 ## 검증 방법
 
 각 과거 충돌은 다음 명령으로 다시 확인할 수 있습니다.
