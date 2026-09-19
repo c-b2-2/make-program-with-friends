@@ -1,0 +1,70 @@
+Generated: 2026-09-16 KST
+Command: git log --oneline --graph --all
+Note: Refresh this file from the final main branch immediately before submission.
+
+* 4563d79 docs: git commit --amend 실습 추가
+| * bf394ca docs:troubleshooting reset 추가
+|/
+*   f18a482 Merge pull request #24 from c-b2-2/feature/stash-practice
+|\
+| * 67d3c5c docs: git stash 트러블슈팅 실습 기록
+* |   eb4e911 Merge pull request #22 from c-b2-2/feature/code_review_rule
+|\ \
+| * \   bad04f8 Merge branch 'main' into feature/code_review_rule
+| |\ \
+| |/ /
+|/| |
+| * | 343794c docs: 코드 리뷰 규칙 추가
+| | | * 82ba2d7 fix:곱셈함수
+| | | *   2507c00 Merge branch 'main' into feature/multiply_function
+| | | |\
+| | | * | bf2fc22 feat: 곱셈함수 구현
+| | | | | *   fd980f2 Merge branch 'main' into feature/etc
+| | | | | |\
+| |_|_|_|_|/
+|/| | | | |
+* | | | | |   0c891a5 Merge pull request #18 from c-b2-2/feature/member-d-divide
+|\ \ \ \ \ \
+| |_|_|_|/ /
+|/| | | | |
+| * | | | | 6979f4d fix: 나눗셈의 기본 ZeroDivisionError 유지
+| * | | | | 7bbdaee feat: 나눗셈 함수 및 0 나누기 예외 처리 구현
+| |/ / / /
+* | | | |   8d8ca7f Merge pull request #21 from c-b2-2/feature/lee-conflict-guide
+|\ \ \ \ \
+| |_|/ / /
+|/| | | |
+| * | | | b2ef177 docs: 충돌 발생 시 기본 대응 흐름 추가
+| |/ / /
+* | | |   f8224fd Merge pull request #13 from c-b2-2/feature/add-function
+|\ \ \ \
+| |/ / /
+|/| | |
+| * | | e3b21a0 refactor: 덧셈 함수만 남기도록 정리
+| * | | de05160 feat: 덧셈 함수 구현
+* | | |   3db0377 Merge pull request #10 from c-b2-2/feature/pr-template
+|\ \ \ \
+| |/ / /
+|/| | |
+| * | | 0028997 docs: PR 체크리스트의 브랜치 조건 제거
+| * | | 09d6454 docs: PR 템플릿 추가
+| |/ /
+| | * 84e9df7 feat: add power utility
+| |/
+|/|
+* |   3486a5a Merge pull request #6 from c-b2-2/feature/lee-subtract
+|\ \
+| |/
+|/|
+| * eee867a feat: add subtraction utility
+* |   0789bb8 Merge pull request #7 from c-b2-2/feature/5-add-main-py
+|\ \
+| * | 4b7255d feat: add main py with hello world
+| |/
+* |   18c3fd5 Merge pull request #4 from c-b2-2/docs/commit-guidelines
+|\ \
+| |/
+|/|
+| * de29726 docs: 커밋 메시지 규칙 작성
+|/
+* 4251988 chore: init
