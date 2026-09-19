@@ -164,7 +164,7 @@ de29726 (origin/docs/commit-guidelines) docs: 커밋 메시지 규칙 작성
 
 ### 참여자와 수행 범위
 
-- 최건영 (`00skgun`): 실습 요청. 아래 직접 재현 및 결과 확인은 아직 대기 중이다.
+- 최건영 (`00skgun`): 실습 요청 및 보관·복원 검증 실행 지시.
 - Codex: 사용자 요청으로 로컬 명령 실행, 파일 복원 확인 및 기록 작성.
 - 이 기록만으로 최건영이 직접 명령을 실행했다고 주장하지 않는다. 직접 재현 후 본인의 실제 결과와 배운 점을 추가한다.
 
@@ -215,10 +215,44 @@ practice = stash untracked file and restore safely
 - 다른 stash가 있다면 목록과 메시지를 확인해 실습 항목을 식별한다.
 - apply 중 충돌하면 해결·검증이 끝나기 전에 보관본을 삭제하지 않는다.
 
-### 최건영 직접 재현 및 확인 — 대기
+### 추가 보관·복원 검증 — 실행 완료 (Codex 실행)
 
-현재 실습 파일이 untracked인 상태에서 위 명령을 직접 실행할 수 있다. 실행 전에 `git stash list`와 `git status --short`를 확인하고 대상 파일만 보관한다. 위 해시는 Codex 시연의 값이며 본인 실행 시 생성되는 해시로 별도 기록한다.
+2026-09-19 최건영의 요청으로 Codex가 아래 검증을 실행했다. 최건영 본인의 터미널 직접 실행이나 이해도 확인을 대신하는 기록은 아니다.
 
-- 본인 실행 stash 해시: 미기록
-- 보관 후 파일이 사라짐 / apply 후 두 줄 복원 / apply 후 stash 유지 / drop 후 해당 항목 제거: 확인 대기
-- 본인이 이해한 `apply`와 `pop` 차이: 직접 작성 대기
+- 시작 커밋: `1a21ad1cc061cbfa4f5d367e46e08c65141cb45c`
+- 시작 상태: 작업 트리와 stash 목록 모두 비어 있음.
+- 이번에는 실습 파일이 이미 tracked 상태였다. 파일에 아래 한 줄을 추가한 후 해당 파일의 변경만 보관했다. 따라서 `-u`는 필요하지 않았다.
+
+```text
+verification = tracked change restored with stash apply
+```
+
+실제 실행 명령:
+
+```powershell
+git diff -- docs/stash-practice-00skgun.txt
+git stash push -m "00skgun requested stash verification" -- docs/stash-practice-00skgun.txt
+git rev-parse "stash@{0}"
+Get-Content docs/stash-practice-00skgun.txt
+git status --short
+git stash apply "stash@{0}"
+Get-Content docs/stash-practice-00skgun.txt
+git stash list
+git rev-parse "stash@{0}:docs/stash-practice-00skgun.txt"
+git hash-object --path=docs/stash-practice-00skgun.txt docs/stash-practice-00skgun.txt
+# 위 두 Git blob 해시가 일치하는 것을 확인한 뒤 실행
+git stash drop "stash@{0}"
+git stash list
+```
+
+검증 결과:
+
+- stash 해시: `e8e08143125f54a8e1b6c9324c44146573c19233`.
+- 보관 후 파일 자체는 남고 추가한 verification 줄만 사라졌다. tracked 파일의 수정분을 보관했기 때문이다.
+- 보관 직후 `git status --short`는 출력이 없었다.
+- apply 후 verification 줄이 복원됐고 기존 두 줄도 유지됐다.
+- apply 후에도 stash 목록에 이번 보관 항목이 남았다.
+- Windows 줄바꿈 변환 때문에 SHA256 파일 바이트 해시는 달랐다. 저장소 줄바꿈 규칙을 적용한 `git hash-object --path`와 stash의 blob 해시가 일치해 Git 기준 내용 복원을 확인했다.
+- 복원 확인 후 이번 stash를 drop했고 최종 stash 목록은 비었다. 복원된 수정은 실습 파일에 남겼다.
+
+검증으로 확인한 원리: `apply`는 복원 후에도 보관본을 유지하므로 결과를 확인한 다음 삭제할 수 있다. `pop`은 적용이 성공하면 보관 항목을 제거한다. 최건영의 직접 수행·학습 소감은 별도로 확인하지 않았다.
