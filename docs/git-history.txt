@@ -1,12 +1,15 @@
 # Generated: 2026-09-19 KST
 # Command: git log --oneline --graph --decorate --all
-# Snapshot before the final submission sync commit; --all includes branches outside main. Graph lines have trailing spaces removed.
+# Snapshot immediately before this history-file commit; --all includes branches outside main. Graph lines have trailing spaces removed.
 
-* 1fe32a1 (origin/feature/00skgun-stash-verification) docs: 리뷰 반영해 stash 시나리오 분리 및 역할과 주의점 복원
-* f512ab3 docs: stash 기록 참여자 섹션 정리
-* 1b2bde2 docs: stash 실습 기록 정리
-* 808fa9e docs: stash 보관 및 복원 검증 결과 추가
-*   4f802bf (HEAD -> feature/final-submission-sync, origin/main, origin/HEAD, main) Merge pull request #36 from c-b2-2/feature/00skgun-stash-practice
+* e3adfe6 (HEAD -> feature/final-submission-sync, origin/feature/final-submission-sync) docs: 제출 인덱스에 최종 정리 PR 연결
+* cbd2086 docs: 미션 최종 제출 문서와 증빙 상태 동기화
+| * 1fe32a1 (origin/feature/00skgun-stash-verification) docs: 리뷰 반영해 stash 시나리오 분리 및 역할과 주의점 복원
+| * f512ab3 docs: stash 기록 참여자 섹션 정리
+| * 1b2bde2 docs: stash 실습 기록 정리
+| * 808fa9e docs: stash 보관 및 복원 검증 결과 추가
+|/
+*   4f802bf (origin/main, origin/HEAD, main) Merge pull request #36 from c-b2-2/feature/00skgun-stash-practice
 |\
 | * 1a21ad1 docs: 최건영 stash 실습 준비와 시연 기록 추가
 |/
