@@ -13,12 +13,11 @@
 ## 브랜치 네이밍 규칙
 
 ```text
-feature/<github-id>-<topic>
+feature/<topic>
 ```
 
-- GitHub ID와 작업 내용을 영문 소문자·숫자·하이픈으로 작성합니다.
+- 작업 내용을 영문 소문자·숫자·로 작성합니다.
 - 한 브랜치에는 원칙적으로 한 Issue의 작업만 담습니다. 제출 정리처럼 같은 목적의 기존 Issue를 함께 닫을 때는 PR 본문에 각 Issue와 묶은 이유를 적습니다.
-- 예: `feature/nengrafi-multiply`, `feature/gittul-123-amend-log`
 
 ## Issue와 PR 규칙
 
