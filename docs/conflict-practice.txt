@@ -1,3 +1,3 @@
 # Do not edit before both participants confirm the same starting commit.
-practice_1 = use_option_a
-practice_2 = document_results_first
+practice_1 = combine_both_options
+practice_2 = document_commands_and_results
