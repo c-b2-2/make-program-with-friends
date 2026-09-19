@@ -1,0 +1,2 @@
+participant = 00skgun
+practice = stash untracked file and restore safely
