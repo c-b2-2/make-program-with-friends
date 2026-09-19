@@ -160,8 +160,13 @@ de29726 (origin/docs/commit-guidelines) docs: 커밋 메시지 규칙 작성
 4251988 chore: init
 ```
 
-## 시나리오: 최건영의 stash 보관·복원 검증
+## 시나리오 1: 최건영 요청 — untracked 파일의 stash 보관·복원
 
+### 참여자와 수행 범위
+
+- 최건영 (`00skgun`): stash 실습 요청.
+- Codex: 사용자 요청에 따라 명령 실행, 파일 복원 확인 및 기록 작성.
+- 최건영이 직접 터미널 명령을 실행한 기록은 아니며, 직접 수행·학습 소감은 별도로 확인하지 않았다.
 
 ### 상황과 선택 이유
 
@@ -203,8 +208,38 @@ practice = stash untracked file and restore safely
 - apply 후에도 `git stash list`에 보관 항목이 남았다.
 - 복원 확인 후 이번 실습 stash만 drop했고, 최종 stash 목록은 비어 있다. 복원 파일은 유지했다.
 
+### 주의점
 
-실제 실행 명령:
+- untracked 파일은 기본 stash 대상이 아니므로 `-u`가 필요하다. ignored 파일은 `-u`로 포함되지 않는다.
+- 대상 경로를 지정하여 다른 작업 파일이 함께 보관되지 않도록 한다.
+- `apply` 후 파일 내용과 untracked 상태를 확인한 다음 해당 stash만 삭제한다.
+
+## 시나리오 2: 최건영 요청 — tracked 수정분의 stash·apply·blob 비교·drop 검증
+
+### 참여자와 수행 범위
+
+- 최건영 (`00skgun`): 추가 보관·복원 검증 실행 요청.
+- Codex: tracked 파일 수정, stash와 apply 실행, Git blob 해시 비교, 검증 후 drop 및 결과 기록.
+- 이 기록은 최건영의 요청과 Codex의 실행을 구분한다. 최건영 본인의 직접 실행이나 이해도 확인을 대신하지 않는다.
+
+### 상황과 선택 이유
+
+시나리오 1 이후 파일이 커밋되어 tracked 상태가 됐다. 이번에는 기존 파일에 추가한 수정분만 잠시 보관하고 정확히 복원되는지 검증했다. untracked 파일을 보관하는 실습과 달리 `-u` 없이 대상 경로를 지정했다. 복원 내용을 검증할 때까지 보관본을 유지하기 위해 `apply`를 선택했다.
+
+### 실행 환경과 준비
+
+- 날짜: 2026-09-19
+- 실행 당시 브랜치: `feature/00skgun-stash-practice`
+- 시작 커밋: `1a21ad1cc061cbfa4f5d367e46e08c65141cb45c`
+- 대상: tracked 파일 `docs/stash-practice-00skgun.txt`
+- 수정 전 작업 트리는 깨끗했고 stash 목록은 비어 있었다.
+- 기존 두 줄을 유지하고 아래 한 줄을 추가한 뒤 명령을 실행했다.
+
+```text
+verification = tracked change restored with stash apply
+```
+
+### 실제 실행 명령
 
 ```powershell
 git diff -- docs/stash-practice-00skgun.txt
@@ -222,7 +257,7 @@ git stash drop "stash@{0}"
 git stash list
 ```
 
-검증 결과:
+### 검증 결과
 
 - stash 해시: `e8e08143125f54a8e1b6c9324c44146573c19233`.
 - 보관 후 파일 자체는 남고 추가한 verification 줄만 사라졌다. tracked 파일의 수정분을 보관했기 때문이다.
@@ -230,6 +265,17 @@ git stash list
 - apply 후 verification 줄이 복원됐고 기존 두 줄도 유지됐다.
 - apply 후에도 stash 목록에 이번 보관 항목이 남았다.
 - Windows 줄바꿈 변환 때문에 SHA256 파일 바이트 해시는 달랐다. 저장소 줄바꿈 규칙을 적용한 `git hash-object --path`와 stash의 blob 해시가 일치해 Git 기준 내용 복원을 확인했다.
+- 두 명령에서 확인한 Git blob 해시: `e2a48afdd8b03af69533ff3595d7fbc7bcb22086`.
 - 복원 확인 후 이번 stash를 drop했고 최종 stash 목록은 비었다. 복원된 수정은 실습 파일에 남겼다.
+
+### 주의점
+
+- tracked 파일의 수정분은 `-u` 없이 보관할 수 있으며, 보관 후 파일 자체가 사라지는 것이 아니라 커밋된 내용으로 돌아간다.
+- 실행 전에 `git status --short`와 `git stash list`를 확인한다. 다른 stash가 있다면 메시지와 해시로 대상 항목을 식별하고 `stash@{0}`을 무조건 사용하지 않는다.
+- `apply` 중 충돌하거나 내용이 일치하지 않으면 stash를 삭제하지 않는다. 복원 내용과 blob 해시를 확인한 뒤 검증한 항목만 drop한다.
+- Git blob 해시 일치는 저장소 규칙으로 정규화된 내용의 일치를 의미하며, 작업 파일의 줄바꿈까지 바이트 단위로 같다는 뜻은 아니다.
+- `drop`은 보관본을 제거하므로 복원 검증 전에 실행하지 않는다.
+
+### 확인한 원리와 기록 범위
 
 검증으로 확인한 원리: `apply`는 복원 후에도 보관본을 유지하므로 결과를 확인한 다음 삭제할 수 있다. `pop`은 적용이 성공하면 보관 항목을 제거한다. 최건영의 직접 수행·학습 소감은 별도로 확인하지 않았다.
