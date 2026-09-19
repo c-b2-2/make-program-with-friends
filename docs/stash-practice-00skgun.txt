@@ -1,2 +1,3 @@
 participant = 00skgun
 practice = stash untracked file and restore safely
+verification = tracked change restored with stash apply

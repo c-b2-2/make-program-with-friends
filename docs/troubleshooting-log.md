@@ -1,6 +1,6 @@
 # Troubleshooting Log
 
-2026-09-19 기준 병합된 PR과 Git 이력에서 확인한 네 가지 실습입니다. 참가자의 터미널 기록에만 남은 명령은 그렇게 표시하고, Codex 실행을 팀원 직접 실행으로 바꾸어 적지 않습니다.
+2026-09-19 기준 병합된 PR과 Git 이력에서 확인한 amend·reset·revert·stash 실습입니다. stash는 브랜치 전환, untracked 파일, tracked 수정분을 각각 기록합니다. 참가자의 터미널 기록에만 남은 명령은 그렇게 표시하고, Codex 실행을 팀원 직접 실행으로 바꾸어 적지 않습니다.
 
 ## `git commit --amend`
 
@@ -47,26 +47,142 @@ test ! -e revert-practice.txt
 - **선택 이유:** 공유된 커밋을 취소하면서 이력을 보존합니다.
 - **주의점·배운 점:** `revert`는 과거 커밋을 삭제하지 않고 반대 변경을 담은 새 커밋을 만듭니다. 되돌릴 커밋과 영향을 먼저 확인해야 합니다.
 
-## `git stash` / `git stash apply`·`pop`
+## `git stash` / `git stash pop`: 이준혁의 브랜치 전환 실습
 
-- **참여자·역할:** 이준혁 (`Cerhovah`)의 stash·pop 실습은 [PR #24](https://github.com/c-b2-2/make-program-with-friends/pull/24)에 기록됐습니다. 최건영 (`00skgun`)은 [PR #36](https://github.com/c-b2-2/make-program-with-friends/pull/36)의 실습을 요청하고 결과 문서를 커밋했습니다. 아래 최건영 관련 명령의 **실행 주체는 Codex**이며 최건영의 직접 터미널 재현은 확인되지 않았습니다.
-- **상황:** 미완성 변경을 임시 보관한 채 브랜치를 바꾸거나, 파일을 보관·복원합니다.
+- **참여자·역할:** 이준혁 (`Cerhovah`)이 실습과 기록을 맡았습니다([PR #24](https://github.com/c-b2-2/make-program-with-friends/pull/24)). 김강현 (`kanghyki`)의 브랜치 전환·복원 결과 확인은 원문에 `팀 확인 필요`로 적혀 있어 완료된 역할로 세지 않습니다.
+- **상황:** 커밋하지 않은 tracked·untracked 변경을 임시 보관하고 다른 브랜치로 이동합니다.
 - **기록된 명령:**
 
 ```bash
-# 이준혁의 stash·pop 실습 기록
+git status --short
 git stash -u
 git stash list
 git switch main
 git switch feature/stash-practice
 git stash pop
-
-# 최건영 요청으로 Codex가 실행한 untracked 파일 시연
-git stash push -u -m "00skgun stash demonstration" -- docs/stash-practice-00skgun.txt
-git stash apply 'stash@{0}'
-git stash drop 'stash@{0}'
+git status --short
 ```
 
-- **결과:** PR #24는 브랜치 복귀 후 변경 복원을 보고합니다. PR #36의 Codex 시연은 untracked 파일이 보관 후 사라지고 apply 후 두 줄로 복원되며 stash 항목이 유지되는 것을 확인했습니다. 시연 stash SHA는 `9e03ef0abab06b732fcd10b32b82f6c7bcba064c`입니다. 최건영이 작성한 후속 커밋 [`808fa9e`](https://github.com/c-b2-2/make-program-with-friends/commit/808fa9eb35db4ba67ae73765f4c3665caf2f1221)은 tracked 파일의 추가 검증을 기록하지만, 그 문서도 Codex 실행이라고 명시합니다. 관련 [PR #38](https://github.com/c-b2-2/make-program-with-friends/pull/38)은 열려 있으며 후속 커밋은 현재 `main`에 포함되지 않았습니다.
-- **선택 이유:** `-u`는 추적되지 않은 파일까지 보관합니다. `apply`는 복원 확인 전까지 stash를 유지할 수 있어 시연에 적합했습니다.
-- **주의점·배운 점:** `pop`은 적용 성공 시 보관 항목을 제거하지만 `apply`는 유지합니다. 복원을 확인하기 전 다른 stash를 잘못 지우지 않도록 목록과 메시지를 확인합니다. 최건영의 직접 실행 증빙은 별도 확인이 필요하며 Codex 실행을 개인 실습으로 세지 않습니다.
+- **결과:** PR #24 본문은 `stash list`에서 보관 항목을 확인하고, 원래 브랜치 복귀 후 `stash pop`으로 변경을 복원했다고 기록합니다. 터미널 전체 출력은 남아 있지 않습니다.
+- **선택 이유:** 임시 커밋 없이 브랜치를 바꾸기 위해 stash를 사용했습니다. `-u`는 untracked 파일을 포함합니다.
+- **주의점:** `pop`은 적용 성공 시 stash를 제거하며 현재 변경과 겹치면 충돌할 수 있습니다. 복원을 검증하기 전 보관본을 유지하려면 `apply`를 사용하고 확인 후 `drop`합니다. `-u`는 ignored 파일을 포함하지 않습니다.
+
+## 시나리오 1: 최건영 요청 — untracked 파일의 stash 보관·복원
+
+### 참여자와 수행 범위
+
+- 최건영 (`00skgun`): stash 실습 요청.
+- Codex: 사용자 요청에 따라 명령 실행, 파일 복원 확인 및 기록 작성.
+- 최건영이 직접 터미널 명령을 실행한 기록은 아니며, 직접 수행·학습 소감은 별도로 확인하지 않았다.
+
+### 상황과 선택 이유
+
+새로 만든 미완성 파일을 잠시 치웠다가 복원하는 상황이다. 아직 추적되지 않은 파일이므로 `-u`를 사용했다. 복원 확인 전 보관본을 유지하기 위해 `pop` 대신 `apply`를 선택했다.
+
+### 실행 환경과 명령
+
+- 날짜: 2026-09-19
+- 브랜치: `feature/00skgun-stash-practice`
+- 시작 커밋: `7e2731be178d8b68aa3868b0c4e605e242729486`
+- 대상: `docs/stash-practice-00skgun.txt` 한 파일
+- 시작 당시 기존 stash와 작업 트리 변경 없음.
+
+```bash
+git status --short
+git stash push -u -m "00skgun stash demonstration" -- docs/stash-practice-00skgun.txt
+git stash list
+git rev-parse 'stash@{0}'
+git stash apply 'stash@{0}'
+git stash list
+git status --short
+# 파일 내용 복원을 확인한 다음 실행
+git stash drop 'stash@{0}'
+git stash list
+```
+
+### 실제 관찰 결과
+
+- 시작 상태: `?? docs/stash-practice-00skgun.txt`
+- stash 생성 후 PowerShell `Test-Path docs/stash-practice-00skgun.txt`: `False`.
+- 생성된 stash 해시: `9e03ef0abab06b732fcd10b32b82f6c7bcba064c`.
+- apply 후 아래 두 줄이 복원됐고 파일은 다시 untracked 상태였다.
+
+```text
+participant = 00skgun
+practice = stash untracked file and restore safely
+```
+
+- apply 후에도 `git stash list`에 보관 항목이 남았다.
+- 복원 확인 후 이번 실습 stash만 drop했고, 최종 stash 목록은 비어 있다. 복원 파일은 유지했다.
+
+### 주의점
+
+- untracked 파일은 기본 stash 대상이 아니므로 `-u`가 필요하다. ignored 파일은 `-u`로 포함되지 않는다.
+- 대상 경로를 지정하여 다른 작업 파일이 함께 보관되지 않도록 한다.
+- `apply` 후 파일 내용과 untracked 상태를 확인한 다음 해당 stash만 삭제한다.
+
+## 시나리오 2: 최건영 요청 — tracked 수정분의 stash·apply·blob 비교·drop 검증
+
+### 참여자와 수행 범위
+
+- 최건영 (`00skgun`): 추가 보관·복원 검증 실행 요청.
+- Codex: tracked 파일 수정, stash와 apply 실행, Git blob 해시 비교, 검증 후 drop 및 결과 기록.
+- 이 기록은 최건영의 요청과 Codex의 실행을 구분한다. 최건영 본인의 직접 실행이나 이해도 확인을 대신하지 않는다.
+
+### 상황과 선택 이유
+
+시나리오 1 이후 파일이 커밋되어 tracked 상태가 됐다. 이번에는 기존 파일에 추가한 수정분만 잠시 보관하고 정확히 복원되는지 검증했다. untracked 파일을 보관하는 실습과 달리 `-u` 없이 대상 경로를 지정했다. 복원 내용을 검증할 때까지 보관본을 유지하기 위해 `apply`를 선택했다.
+
+### 실행 환경과 준비
+
+- 날짜: 2026-09-19
+- 실행 당시 브랜치: `feature/00skgun-stash-practice`
+- 시작 커밋: `1a21ad1cc061cbfa4f5d367e46e08c65141cb45c`
+- 대상: tracked 파일 `docs/stash-practice-00skgun.txt`
+- 수정 전 작업 트리는 깨끗했고 stash 목록은 비어 있었다.
+- 기존 두 줄을 유지하고 아래 한 줄을 추가한 뒤 명령을 실행했다.
+
+```text
+verification = tracked change restored with stash apply
+```
+
+### 실제 실행 명령
+
+```powershell
+git diff -- docs/stash-practice-00skgun.txt
+git stash push -m "00skgun requested stash verification" -- docs/stash-practice-00skgun.txt
+git rev-parse "stash@{0}"
+Get-Content docs/stash-practice-00skgun.txt
+git status --short
+git stash apply "stash@{0}"
+Get-Content docs/stash-practice-00skgun.txt
+git stash list
+git rev-parse "stash@{0}:docs/stash-practice-00skgun.txt"
+git hash-object --path=docs/stash-practice-00skgun.txt docs/stash-practice-00skgun.txt
+# 위 두 Git blob 해시가 일치하는 것을 확인한 뒤 실행
+git stash drop "stash@{0}"
+git stash list
+```
+
+### 검증 결과
+
+- stash 해시: `e8e08143125f54a8e1b6c9324c44146573c19233`.
+- 보관 후 파일 자체는 남고 추가한 verification 줄만 사라졌다. tracked 파일의 수정분을 보관했기 때문이다.
+- 보관 직후 `git status --short`는 출력이 없었다.
+- apply 후 verification 줄이 복원됐고 기존 두 줄도 유지됐다.
+- apply 후에도 stash 목록에 이번 보관 항목이 남았다.
+- Windows 줄바꿈 변환 때문에 SHA256 파일 바이트 해시는 달랐다. 저장소 줄바꿈 규칙을 적용한 `git hash-object --path`와 stash의 blob 해시가 일치해 Git 기준 내용 복원을 확인했다.
+- 두 명령에서 확인한 Git blob 해시: `e2a48afdd8b03af69533ff3595d7fbc7bcb22086`.
+- 복원 확인 후 이번 stash를 drop했고 최종 stash 목록은 비었다. 복원된 수정은 실습 파일에 남겼다.
+
+### 주의점
+
+- tracked 파일의 수정분은 `-u` 없이 보관할 수 있으며, 보관 후 파일 자체가 사라지는 것이 아니라 커밋된 내용으로 돌아간다.
+- 실행 전에 `git status --short`와 `git stash list`를 확인한다. 다른 stash가 있다면 메시지와 해시로 대상 항목을 식별하고 `stash@{0}`을 무조건 사용하지 않는다.
+- `apply` 중 충돌하거나 내용이 일치하지 않으면 stash를 삭제하지 않는다. 복원 내용과 blob 해시를 확인한 뒤 검증한 항목만 drop한다.
+- Git blob 해시 일치는 저장소 규칙으로 정규화된 내용의 일치를 의미하며, 작업 파일의 줄바꿈까지 바이트 단위로 같다는 뜻은 아니다.
+- `drop`은 보관본을 제거하므로 복원 검증 전에 실행하지 않는다.
+
+### 확인한 원리와 기록 범위
+
+검증으로 확인한 원리: `apply`는 복원 후에도 보관본을 유지하므로 결과를 확인한 다음 삭제할 수 있다. `pop`은 적용이 성공하면 보관 항목을 제거한다. 최건영의 직접 수행·학습 소감은 별도로 확인하지 않았다.
