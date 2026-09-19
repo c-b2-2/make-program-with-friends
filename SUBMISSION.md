@@ -2,7 +2,7 @@
 
 > 2026-09-19 KST 기준. GitHub PR·Issue·review와 `origin/main`의 `4f802bfe20e6f4692a0890a8bdcad44665379e96`을 대조했습니다. 완료된 작업과 아직 증빙이 필요한 작업을 아래에 구분합니다.
 
-이번 문서 정리는 [Issue #39](https://github.com/c-b2-2/make-program-with-friends/issues/39)에서 추적합니다.
+이번 문서 정리는 [Issue #39](https://github.com/c-b2-2/make-program-with-friends/issues/39)와 [PR #40](https://github.com/c-b2-2/make-program-with-friends/pull/40)에서 추적합니다.
 
 ## 저장소와 결과물
 
@@ -42,7 +42,7 @@
 1. 이준혁과 최건영이 같은 새 시작 커밋에서 `practice_2`를 각각 바꿔 충돌·해결하고, 두 변경 커밋과 병합 커밋을 [충돌 기록](docs/conflict-resolution.md)에 추가해야 합니다.
 2. 김보민이 타인 PR에 파일·동작·위험을 근거로 한 구체적 리뷰를 한 건 더 남겨야 합니다. 최종 정리 PR에서 남기는 리뷰도 실제로 작성되면 증빙이 됩니다.
 3. 트러블슈팅의 전원 직접 실행이 미션 기준이라면 최건영이 자신의 stash 명령과 결과를 직접 남겨야 합니다. Codex 시연은 그 증빙을 대신하지 않습니다.
-4. 이 문서 정리 PR도 다른 팀원의 실제 리뷰와 Approve 후 `main`에 병합해야 합니다.
+4. [문서 정리 PR #40](https://github.com/c-b2-2/make-program-with-friends/pull/40)도 다른 팀원의 실제 리뷰와 Approve 후 `main`에 병합해야 합니다.
 5. [PR #38](https://github.com/c-b2-2/make-program-with-friends/pull/38)은 별도 검토 중입니다. 동일한 트러블슈팅 문서를 수정하므로 병합 순서에 맞춰 내용을 대조해야 합니다.
 
 따라서 다섯 유틸 함수와 병합 PR 수는 충족됐지만, **현재 상태를 미션 전체의 최종 완료로 판정하지 않습니다.**
