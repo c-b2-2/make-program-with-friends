@@ -1,62 +1,133 @@
-Generated: 2026-09-16 KST
-Command: git log --oneline --graph --all
-Note: Refresh this file from the final main branch immediately before submission.
+# Generated: 2026-09-19 KST
+# Command: git log --oneline --graph --decorate --all
+# Snapshot before the final submission sync commit; --all includes branches outside main. Graph lines have trailing spaces removed.
 
-* 4563d79 docs: git commit --amend 실습 추가
-| * bf394ca docs:troubleshooting reset 추가
-|/
-*   f18a482 Merge pull request #24 from c-b2-2/feature/stash-practice
+* 1fe32a1 (origin/feature/00skgun-stash-verification) docs: 리뷰 반영해 stash 시나리오 분리 및 역할과 주의점 복원
+* f512ab3 docs: stash 기록 참여자 섹션 정리
+* 1b2bde2 docs: stash 실습 기록 정리
+* 808fa9e docs: stash 보관 및 복원 검증 결과 추가
+*   4f802bf (HEAD -> feature/final-submission-sync, origin/main, origin/HEAD, main) Merge pull request #36 from c-b2-2/feature/00skgun-stash-practice
 |\
-| * 67d3c5c docs: git stash 트러블슈팅 실습 기록
-* |   eb4e911 Merge pull request #22 from c-b2-2/feature/code_review_rule
-|\ \
-| * \   bad04f8 Merge branch 'main' into feature/code_review_rule
+| * 1a21ad1 docs: 최건영 stash 실습 준비와 시연 기록 추가
+|/
+*   0bc1f5c Merge pull request #34 from c-b2-2/feature/cerhovah-mission-completion
+|\
+| * 715c928 (origin/feature/cerhovah-mission-completion, feature/cerhovah-mission-completion) docs: 충돌 실습 이력 검증 및 재실습 절차 정리
+| *   ba71362 merge: 최신 main 문서 반영
+| |\
+| * | ab8ebea docs: 의도적 충돌 실습 2회 증빙 기록
+| * |   2ae0b6c docs: 충돌 실습 2 해결
 | |\ \
+| | * \   4d112a4 docs: 충돌 실습 1 해결
+| | |\ \
+| | * | | 33ecd38 docs: 충돌 실습 1 참여자 B 변경
+| * | | | 19cd9f4 docs: 충돌 실습 2 참여자 A 변경
+| | |/ /
+| |/| |
+| * | | 8213827 docs: 충돌 실습 1 참여자 A 변경
 | |/ /
-|/| |
-| * | 343794c docs: 코드 리뷰 규칙 추가
-| | | * 82ba2d7 fix:곱셈함수
-| | | *   2507c00 Merge branch 'main' into feature/multiply_function
-| | | |\
-| | | * | bf2fc22 feat: 곱셈함수 구현
-| | | | | *   fd980f2 Merge branch 'main' into feature/etc
-| | | | | |\
-| |_|_|_|_|/
+* | |   6f3f2da Merge pull request #28 from c-b2-2/feature/docs_troubleshooting
+|\ \ \
+| * \ \   2cb5086 (origin/feature/docs_troubleshooting) Merge branch 'main' into feature/docs_troubleshooting
+| |\ \ \
+| |/ / /
+|/| | |
+* | | |   7e2731b Merge pull request #11 from c-b2-2/feature/multiply_function
+|\ \ \ \
+| |_|_|/
+|/| | |
+| * | | 82ba2d7 (origin/feature/multiply_function) fix:곱셈함수
+| * | |   2507c00 Merge branch 'main' into feature/multiply_function
+| |\ \ \
+| * | | | bf2fc22 feat: 곱셈함수 구현
+* | | | |   f5558d1 Merge pull request #29 from c-b2-2/feature/docs_trouble
+|\ \ \ \ \
+| * \ \ \ \   dd9f88c (origin/feature/docs_trouble) Merge branch 'main' into feature/docs_trouble
+| |\ \ \ \ \
+| |/ / / / /
+|/| | | | |
+* | | | | |   187a786 Merge pull request #31 from c-b2-2/feature/cerhovah-mission-completion
+|\ \ \ \ \ \
+| | |_|_|_|/
+| |/| | | |
+| * | | | |   32f1d91 merge: troubleshooting 기록 충돌 해결
+| |\ \ \ \ \
+| |/ / / / /
+|/| | | | |
+| * | | | | 3781c4b docs: 충돌 참여자 선택과 리뷰 실습 정리
+| * | | | | 23b4b87 docs: 최소 사람 작업 기준 통일
+| * | | | | 512b467 docs: 공개 검증 기록 상태 반영
+| * | | | | 8aeb70a docs: 미션 제출 문서와 검증 자료 정리
+| | * | | |   85ba892 Merge branch 'main' into feature/docs_trouble
+| | |\ \ \ \
+| |_|/ / / /
+|/| | | | |
+* | | | | |   c6c9bcb Merge pull request #19 from c-b2-2/feature/etc
+|\ \ \ \ \ \
+| * \ \ \ \ \   fd980f2 (origin/feature/etc) Merge branch 'main' into feature/etc
+| |\ \ \ \ \ \
+| * | | | | | | 84e9df7 feat: add power utility
+* | | | | | | |   57f8741 Merge pull request #32 from c-b2-2/docs/revert-practice-draft
+|\ \ \ \ \ \ \ \
+| |_|_|/ / / / /
+|/| | | | | | |
+| * | | | | | | 3ce1009 (origin/feature/revert-practice) docs: 실제 revert 커밋과 검증 결과 기록
+| * | | | | | | 944e17d Revert "chore: revert 실습용 파일 추가"
+| * | | | | | | e5fa1a6 chore: revert 실습용 파일 추가
+| * | | | | | | 39fc4eb docs: git revert 트러블슈팅 실습 초안 추가
+|/ / / / / / /
+| | | * / / / 4563d79 docs: git commit --amend 실습 추가
+| |_|/ / / /
+|/| | | | |
+| | | | | * bf394ca docs:troubleshooting reset 추가
+| |_|_|_|/
+|/| | | |
+* | | | |   f18a482 Merge pull request #24 from c-b2-2/feature/stash-practice
+|\ \ \ \ \
+| * | | | | 67d3c5c (origin/feature/stash-practice) docs: git stash 트러블슈팅 실습 기록
+* | | | | |   eb4e911 Merge pull request #22 from c-b2-2/feature/code_review_rule
+|\ \ \ \ \ \
+| |_|_|/ / /
+|/| | | | |
+| * | | | |   bad04f8 Merge branch 'main' into feature/code_review_rule
+| |\ \ \ \ \
+| |/ / / / /
 |/| | | | |
 * | | | | |   0c891a5 Merge pull request #18 from c-b2-2/feature/member-d-divide
 |\ \ \ \ \ \
-| |_|_|_|/ /
+| |_|_|_|_|/
 |/| | | | |
 | * | | | | 6979f4d fix: 나눗셈의 기본 ZeroDivisionError 유지
 | * | | | | 7bbdaee feat: 나눗셈 함수 및 0 나누기 예외 처리 구현
+* | | | | |   8d8ca7f Merge pull request #21 from c-b2-2/feature/lee-conflict-guide
+|\ \ \ \ \ \
+| |_|_|/ / /
+|/| | | | |
+| * | | | | b2ef177 (origin/feature/lee-conflict-guide) docs: 충돌 발생 시 기본 대응 흐름 추가
 | |/ / / /
-* | | | |   8d8ca7f Merge pull request #21 from c-b2-2/feature/lee-conflict-guide
+* | | | |   f8224fd Merge pull request #13 from c-b2-2/feature/add-function
 |\ \ \ \ \
-| |_|/ / /
+| |/ / / /
 |/| | | |
-| * | | | b2ef177 docs: 충돌 발생 시 기본 대응 흐름 추가
-| |/ / /
-* | | |   f8224fd Merge pull request #13 from c-b2-2/feature/add-function
-|\ \ \ \
-| |/ / /
-|/| | |
-| * | | e3b21a0 refactor: 덧셈 함수만 남기도록 정리
-| * | | de05160 feat: 덧셈 함수 구현
-* | | |   3db0377 Merge pull request #10 from c-b2-2/feature/pr-template
-|\ \ \ \
-| |/ / /
-|/| | |
-| * | | 0028997 docs: PR 체크리스트의 브랜치 조건 제거
-| * | | 09d6454 docs: PR 템플릿 추가
+| * | | | e3b21a0 refactor: 덧셈 함수만 남기도록 정리
+| * | | | de05160 feat: 덧셈 함수 구현
+| | |/ /
+| |/| |
+| | * | 343794c docs: 코드 리뷰 규칙 추가
 | |/ /
-| | * 84e9df7 feat: add power utility
+|/| |
+* | |   3db0377 Merge pull request #10 from c-b2-2/feature/pr-template
+|\ \ \
+| |/ /
+|/| |
+| * | 0028997 docs: PR 체크리스트의 브랜치 조건 제거
+| * | 09d6454 docs: PR 템플릿 추가
 | |/
-|/|
 * |   3486a5a Merge pull request #6 from c-b2-2/feature/lee-subtract
 |\ \
 | |/
 |/|
-| * eee867a feat: add subtraction utility
+| * eee867a (origin/feature/lee-subtract) feat: add subtraction utility
 * |   0789bb8 Merge pull request #7 from c-b2-2/feature/5-add-main-py
 |\ \
 | * | 4b7255d feat: add main py with hello world
@@ -65,6 +136,6 @@ Note: Refresh this file from the final main branch immediately before submission
 |\ \
 | |/
 |/|
-| * de29726 docs: 커밋 메시지 규칙 작성
+| * de29726 (origin/docs/commit-guidelines) docs: 커밋 메시지 규칙 작성
 |/
 * 4251988 chore: init

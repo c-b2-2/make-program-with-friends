@@ -4,7 +4,7 @@
 
 - 저장소: <https://github.com/c-b2-2/make-program-with-friends>
 - 실행 환경: Python 3.10 이상
-- 현재 상태(2026-09-16 KST): 최종 제출 전 정리 중. 열린 PR과 사람 확인이 필요한 항목은 [미션 정합성 보고서](docs/mission-audit.md)에 구분했습니다.
+- 제출 현황과 남은 증빙: [SUBMISSION.md](SUBMISSION.md)
 
 ## 팀
 
@@ -29,19 +29,21 @@
 | 김강현 | `add(a, b)` | `main` 병합 완료 | `add(2, 3) == 5` |
 | 이준혁 | `subtract(a, b)` | `main` 병합 완료 | `subtract(10, 3) == 7` |
 | 최건영 | `divide(a, b)` | `main` 병합 완료 | `divide(8, 2) == 4` |
-| 김보민 | `multiply_function(a, b)` | [PR #11](https://github.com/c-b2-2/make-program-with-friends/pull/11) 열림 | 병합 후 `multiply_function(2, 3) == 6` |
-| 임효정 | `power(base, exponent)` | [PR #19](https://github.com/c-b2-2/make-program-with-friends/pull/19) 열림 | 병합 후 `power(2, 3) == 8` |
+| 김보민 | `multiply_function(a, b)` | [PR #11](https://github.com/c-b2-2/make-program-with-friends/pull/11) `main` 병합 완료 | `multiply_function(2, 3) == 6` |
+| 임효정 | `power(base, exponent)` | [PR #19](https://github.com/c-b2-2/make-program-with-friends/pull/19) `main` 병합 완료 | `power(2, 3) == 8` |
 
-현재 `main`에서 사용할 수 있는 함수는 다음과 같습니다.
+현재 `main`에는 다섯 함수가 모두 있습니다.
 
 ```python
 from src.divide import divide
-from src.main import add
+from src.main import add, multiply_function, power
 from src.subtract import subtract
 
 assert add(2, 3) == 5
 assert subtract(10, 3) == 7
 assert divide(8, 2) == 4
+assert multiply_function(2, 3) == 6
+assert power(2, 3) == 8
 ```
 
 ## 검증
@@ -55,8 +57,5 @@ python -m unittest discover -s tests -v
 - [기여 및 협업 규칙](docs/CONTRIBUTING.md)
 - [충돌 해결 기록](docs/conflict-resolution.md)
 - [Git 트러블슈팅 기록](docs/troubleshooting-log.md)
-- [미션 정합성 보고서](docs/mission-audit.md)
-- [Pull Request 증빙 감사](docs/pr-evidence.md)
-- [사람이 직접 남겨야 할 최소 행동](docs/human-actions.md)
-- [팀 검증 및 AI 사용 기록](docs/team-verification.md)
 - [제출 인덱스](SUBMISSION.md)
+- [Git 이력](docs/git-history.txt)
